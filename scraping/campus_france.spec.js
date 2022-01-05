@@ -21,7 +21,7 @@ describe('Login', () => {
 })
 
 describe('Scrap informations', () => {
-    it('first level', () => {
+    it('Personal data', () => {
 
     })
 })
