@@ -1,3 +1,6 @@
 {
-  "testFiles": "scraping/*.spec.js"
+  "projectId": "CampusFrance",
+  "env": {
+    "backendUrl": "https://api.glific.test:4001/api"
+  }
 }

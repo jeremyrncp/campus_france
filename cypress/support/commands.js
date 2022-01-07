@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (username, password) => {
+    let login = username
+    cy.visit('https://pastel.diplomatie.gouv.fr/etudesenfrance/dyn/public/authentification/login.html')
+
+    cy.get('#username-ariaLabel')
+        .siblings()
+        .type(login)
+
+    cy.get('#username-ariaLabel')
+        .parent()
+        .siblings()
+        .find("input[type='password']")
+        .type(password)
+
+    cy.get("input[class='submit']")
+        .click()
+        .wait(5)
+})
