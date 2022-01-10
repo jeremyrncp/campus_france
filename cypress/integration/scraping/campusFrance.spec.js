@@ -1,15 +1,14 @@
-describe('Scrap informations', () => {
+import scrapingDto from './scrapingDto'
 
+describe('Scrap informations', () => {
     /** Step 1 **/
     it('Login & identity picture', () => {
         cy.login('Fifassigankoue@gmail.com', 'Aubierge2019!')
 
-        let etatsInfosPerso = ""
-
         cy.get("#etatInfosPerso")
             .invoke("text")
             .then((text) => {
-                etatsInfosPerso = text
+                scrapingDto.etatsInfosPerso = text
             })
 
         cy.get("a[title='1.1 - Je saisis mes informations personnelles']")
@@ -20,43 +19,38 @@ describe('Scrap informations', () => {
             .wait(3)
 
 
-        let identifiantsetPhotos = ""
+        scrapingDto.identifiantsetPhotos = ""
                 cy.get("#affichageLabelEtatIdentifiantsEtFoto")
                     .invoke("text")
                     .then((text) => {
-                        identifiantsetPhotos = text
+                        scrapingDto.identifiantsetPhotos = text
                     })
 
-        let monEmail = ""
             cy.get("#uLogin")
                 .invoke("text")
                 .then((text) => {
-                    monEmail = text
+                    scrapingDto.monEmail = text
                 })
 
-        let monIdentifiantEtudesenFrance = ""
                 cy.get("#uNumCompte")
                     .invoke("text")
                     .then((text) => {
-                        monIdentifiantEtudesenFrance = text
+                        scrapingDto.monIdentifiantEtudesenFrance = text
                     })
 
-        let photoIdentite = ""
             cy.get(".photoIdentite")
                 .invoke("text")
                 .then((text) => {
-                    photoIdentite = text
+                    scrapingDto.photoIdentite = text
                 })
 
 
     })
     it('Identity', () => {
-        let etatIdentity = ""
-
         cy.get("#affichageLabelEtatEtatCivil")
             .invoke("text")
             .then((text) => {
-                etatIdentity = text
+                scrapingDto.etatIdentity = text
             })
 
 
@@ -77,7 +71,6 @@ describe('Scrap informations', () => {
             .wait(2)
         **/
 
-        let etatCivil = []
         cy.get("#fieldsetEtatCivil")
             .find("span.label")
             .then((elm) => {
@@ -90,31 +83,30 @@ describe('Scrap informations', () => {
                             .siblings()
                             .text()
 
-                etatCivil.label = valeur
+                scrapingDto.etatCivil.label = valeur
             })
     })
     it('Contact details', () => {
         let elmAffichageEtatCoordonnees = cy.get("#affichageLabelEtatCoordonnees")
 
         if (elmAffichageEtatCoordonnees.length === 0) {
-            let etatCoordonnees = null
+            scrapingDto.etatCoordonnees = null
         } else {
-            let etatCoordonnees = ""
+            scrapingDto.etatCoordonnees = ""
 
         const elmLabelEtatCoord = cy.get("#affichageLabelEtatCoordonnees")
 
             if (elmLabelEtatCoord.length === 0) {
-                let etatCoordonnees = null
+                scrapingDto.etatCoordonnees = null
             } else {
-                let etatCoordonnees = ""
+                scrapingDto.etatCoordonnees = ""
                 elmLabelEtatCoord.invoke("text")
                     .then((text) => {
-                        etatCoordonnees = text
+                        scrapingDto.etatCoordonnees = text
                     })
             }
         }
 
-        let contactDetails = []
         cy.get("#fieldsetCoordonnees")
             .find("span.label")
             .then((elm) => {
@@ -132,7 +124,7 @@ describe('Scrap informations', () => {
                     valeur = valeur.text()
                 }
 
-                contactDetails.label = valeur
+                scrapingDto.contactDetails.label = valeur
             })
     })
     it('Particular statut', () => {
@@ -170,102 +162,102 @@ describe('Scrap informations', () => {
         const statutParcoursDiplomes = cy.get("#completudeCursuslabel")
                                             .invoke("text")
 
-        let statutCV = "";
         cy.get("#scanLisibleCV")
             .parent(2)
             .siblings(2)
             .find("div")
             .then((elm) => {
-               statutCV = elm.text()
+                scrapingDto.statutCV = elm.text()
             });
 
-        let etudes = []
         cy.get("#tableauParcours")
             .find("tr")
             .each(($elm) => {
-                let annee = $elm.find("td[headers='annee']")
-                                    .first()
+                scrapingDto.annee = $elm.find("td[headers='annee']")
                                     .child()
                                     .text()
 
                 let etatActiviteElm = $elm.find("div[class='affichageEtatActivite']")
 
-                let statutValidation = etatActiviteElm.child(0)
-                let commentaireValidation= etatActiviteElm.child(1)
+                scrapingDto.statutValidation = etatActiviteElm.child(0)
+                scrapingDto.commentaireValidation= etatActiviteElm.child(1)
 
-                let typeActivite = ""
                     $elm.get("td[headers='etudes']")
                         .find('.italic')
                         .then((elm) => {
-                            typeActivite = elm.text()
+                            scrapingDto.typeActivite = elm.text()
                         })
 
-                let detailActivite = ""
                     $elm.get("td[headers='etudes']")
                         .find('.tronque')
                         .first()
                         .then((elm) => {
-                            detailActivite = elm.text()
+                            scrapingDto.detailActivite = elm.text()
                         })
 
-                let detailActiviteCompl = ""
                     $elm.get("td[headers='etudes']")
                         .find('.tronque')
                         .child(1)
                         .then((elm) => {
-                            detailActiviteCompl = elm.text()
+                            scrapingDto.detailActiviteCompl = elm.text()
                         })
-
-                let localisation = ""
 
                 let elmLocalisation = $elm.get("td[headers='localisation']")
                                             .find('.tronque')
 
-                let localisationLigneUne = elmLocalisation.child(0)
-                let localisationLigneDeux = elmLocalisation.child(1)
-                let localisationLigneTrois = elmLocalisation.child(2)
+                scrapingDto.localisationLigneUne = elmLocalisation.child(0)
+                scrapingDto.localisationLigneDeux = elmLocalisation.child(1)
+                scrapingDto.localisationLigneTrois = elmLocalisation.child(2)
             })
         })
     it('Language skills', () => {
         cy.login('Fifassigankoue@gmail.com', 'Aubierge2019!')
 
-        const statutLangues = cy.get("#completudeLangueslabel")
+        scrapingDto.statutLangues = cy.get("#completudeLangueslabel")
                                     .invoke("text")
 
-        const testLangueFr = cy.get("#tableauTestLangueContainer")
-                                    .child()
+        if (cy.get("#tableauTestLangueContainer").length === 0) {
+            scrapingDto.testLangueFr = null
+        } else {
+            scrapingDto.testLangueFr = cy.get("#tableauTestLangueContainer")
+                .child()
+                .invoke("text")
+        }
+
+        if (cy.get("#blocNiveauFr").length === 0) {
+            scrapingDto.statutNiveauFr = null
+        } else {
+            scrapingDto.statutNiveauFr = cy.get("#blocNiveauFr")
+                .find("div")
+                .get(1)
+                .child(0)
+                .invoke("text")
+        }
+
+        scrapingDto.scolariteFrance = cy.get("#scolarite")
                                     .invoke("text")
 
-        const statutNiveauFr = cy.get("#blocNiveauFr")
-                            .find("div")
-                            .get(1)
-                            .child(0)
-                            .invoke("text")
-
-        const scolariteFrance = cy.get("#scolarite")
+        scrapingDto.etudeduFrancais = cy.get("#etude")
                                     .invoke("text")
 
-        const etudeduFrancais = cy.get("#etude")
-                                    .invoke("text")
-
-        const sejourEnFrance = cy.get("#popinAjoutSej")
+        scrapingDto.sejourEnFrance = cy.get("#popinAjoutSej")
                                     .siblings(1)
                                     .child(3)
                                     .child()
                                     .invoke("text")
 
 
-        const statutNiveauAnglais = cy.get("#affichageLabelEtatNiveauAnglais")
+        scrapingDto.statutNiveauAnglais = cy.get("#affichageLabelEtatNiveauAnglais")
                                         .invoke("text")
 
 
-        const scolaritenglais = cy.get("#scolariteAnglais")
+        scrapingDto.scolaritenglais = cy.get("#scolariteAnglais")
                                     .invoke("text")
 
-        const examenAnglais = cy.get("#examenAnglais")
+        scrapingDto.examenAnglais = cy.get("#examenAnglais")
                                     .invoke("text")
 
-        const autreLangue = cy.get("#autreLangue")
+        scrapingDto.autreLangue = cy.get("#autreLangue")
                                 .invoke("text")
     })
 
@@ -278,18 +270,16 @@ describe('Scrap informations', () => {
 
         if (cy.get("#affichageLabelEtatPanier")
             .length === 1 ) {
-            let statutPanierFormation = cy.get("#affichageLabelEtatPanier")
+            scrapingDto.statutPanierFormation = cy.get("#affichageLabelEtatPanier")
                 .invoke("text")
         } else {
-            let statutPanierFormation = null
+            scrapingDto.statutPanierFormation = null
         }
 
         if (cy.get("div.errorBox_panier")
             .invoke("text") === "") {
-            let panierFormation = null
+            scrapingDto.panierFormation = null
         } else {
-            let panierFormation = []
-
             cy.get(".table")
                 .each( (elm) => {
                     let elmTitreTableau = elm.get(".titreTableau")
@@ -345,26 +335,28 @@ describe('Scrap informations', () => {
                         liste: listeFormations
                     }
 
-                    panierFormation.push(contentFormation)
+                    scrapingDto.panierFormation.push(contentFormation)
                 })
         }
     })
     it('Folder Campus France', () => {
         cy.login('Fifassigankoue@gmail.com', 'Aubierge2019!')
 
-        cy.get("a[title='1.3 - Je soumets mon dossier à l'espace Campus France']")
+        cy.get("a[title=\"1.3 - Je soumets mon dossier à l'espace Campus France\"]")
             .click()
             .wait(3)
 
-        let listeSoumissionDossier = []
-        cy.get(".infoBox_soumettreDossier")
-            .find("li")
-            .each((elm) => {
-                listeSoumissionDossier.push(elm.text())
-            })
+        if (cy.get(".infoBox_soumettreDossier") === undefined) {
+            let listeSoumissionDossier = null
+        } else {
+            cy.get(".infoBox_soumettreDossier")
+                .find("li")
+                .each((elm) => {
+                    scrapingDto.listeSoumissionDossier.push(elm.text())
+                })
+        }
 
 
-        let statutDossier = []
         cy.get(".groupeChamps")
             .each((elm) => {
                 cy.get(".corpsFieldSet")
@@ -372,11 +364,15 @@ describe('Scrap informations', () => {
                         let name = elm.child(1)
                         let statut = elm.child(2)
 
-                        statutDossier.push({
+                        scrapingDto.statutDossier.push({
                             name: name,
                             statut: statut
                         })
                     })
             })
+    })
+
+    it('Send API Request', () => {
+        cy.request('api/scraping', scrapingDto)
     })
 })
