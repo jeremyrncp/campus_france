@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\DTO\ScrapingDTO;
 use App\Entity\Scraping;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,14 +24,19 @@ class ApiController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response
     {
-        $scraping = json_decode($request->getContent());
+        $scrapingParameters = json_decode($request->getContent());
 
-        $scraping = new Scraping($scraping);
+        $scrapingDTO = new ScrapingDTO($scrapingParameters)
+
+        $scraping = new Scraping();
+        $scraping->setDate(new \DateTime());
 
         $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
 
         $serializer = new Serializer($normalizers, $encoders);
+
+        $scraping->setUser($this->getUser());
 
         $entityManager->persist($scraping);
         $entityManager->flush();

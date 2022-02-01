@@ -1,0 +1,10 @@
+{% extends 'base_adminuser.html.twig' %}
+
+{% block title %}Participer à la discussion{% endblock %}
+
+{% block body %}
+    <div class="mt-5">
+        <!-- liste des discussions -->
+        {{  form(addMessageForm) }}
+    </div>
+{% endblock %}

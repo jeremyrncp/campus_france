@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -62,6 +64,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $isVerified = false;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Discussion::class, mappedBy="user", cascade={"remove"})
+     */
+    private $discussions;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $fullName;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="user")
+     */
+    private $messages;
+
+    public function __construct()
+    {
+        $this->discussions = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -208,6 +231,91 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getDiscussion(): Collection
+    {
+        return $this->discussion;
+    }
+
+    public function addDiscussion(Message $discussion): self
+    {
+        if (!$this->discussion->contains($discussion)) {
+            $this->discussion[] = $discussion;
+            $discussion->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiscussion(Message $discussion): self
+    {
+        if ($this->discussion->removeElement($discussion)) {
+            // set the owning side to null (unless already changed)
+            if ($discussion->getUser() === $this) {
+                $discussion->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Discussion[]
+     */
+    public function getDiscussions(): Collection
+    {
+        return $this->discussions;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->fullName;
+    }
+
+    public function setFullName(string $fullName): self
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getUser() === $this) {
+                $message->setUser(null);
+            }
+        }
 
         return $this;
     }

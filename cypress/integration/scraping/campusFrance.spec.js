@@ -2,6 +2,7 @@ import scrapingDto from './scrapingDto'
 
 describe('Scrap informations', () => {
     /** Step 1 **/
+    /**
     it('Login & identity picture', () => {
         cy.login('Fifassigankoue@gmail.com', 'Aubierge2019!')
 
@@ -69,23 +70,18 @@ describe('Scrap informations', () => {
         cy.get("#cancelButton")
             .click()
             .wait(2)
-        **/
 
         cy.get("#fieldsetEtatCivil")
             .find("span.label")
-            .then((elm) => {
-
+            .each((elm) => {
                 let label = elm
-                            .text()
+                    .text()
+                    .trim()
 
-                let valeur = elm
-                            .parent()
-                            .siblings()
-                            .text()
-
-                scrapingDto.etatCivil.label = valeur
+                scrapingDto.etatCivil.push(label + "#" + elm.parent().siblings(".champConsult").text().trim())
             })
-    })
+    })**/
+/**
     it('Contact details', () => {
         let elmAffichageEtatCoordonnees = cy.get("#affichageLabelEtatCoordonnees")
 
@@ -109,10 +105,11 @@ describe('Scrap informations', () => {
 
         cy.get("#fieldsetCoordonnees")
             .find("span.label")
-            .then((elm) => {
+            .each((elm) => {
 
                 let label = elm
                     .text()
+                    .trim()
 
                 let valeur = elm
                     .parent()
@@ -121,10 +118,10 @@ describe('Scrap informations', () => {
                 if (valeur.length === 0) {
                     valeur = null
                 } else {
-                    valeur = valeur.text()
+                    valeur = valeur.text().trim()
                 }
 
-                scrapingDto.contactDetails.label = valeur
+                scrapingDto.contactDetails.push(label.trim() + "#" + valeur)
             })
     })
     it('Particular statut', () => {
@@ -149,15 +146,18 @@ describe('Scrap informations', () => {
                     valeur = valeur.text()
                 }
 
-                statutParticulier.label = valeur
+                statutParticulier.push(label + "#" + valeur)
             })
     })
+    **/
 
     /** Step 2 **/
     it("My background and my diplomas", () => {
+        cy.login('Fifassigankoue@gmail.com', 'Aubierge2019!')
+
         cy.get("#completudeCursuslabel")
             .click()
-            .wait(3)
+            .wait(6)
 
         const statutParcoursDiplomes = cy.get("#completudeCursuslabel")
                                             .invoke("text")
@@ -174,30 +174,29 @@ describe('Scrap informations', () => {
             .find("tr")
             .each(($elm) => {
                 scrapingDto.annee = $elm.find("td[headers='annee']")
-                                    .child()
+                                    .children()
                                     .text()
+                                    .trim()
 
                 let etatActiviteElm = $elm.find("div[class='affichageEtatActivite']")
 
-                scrapingDto.statutValidation = etatActiviteElm.child(0)
-                scrapingDto.commentaireValidation= etatActiviteElm.child(1)
+                scrapingDto.statutValidation = etatActiviteElm.children(0).text()
+                scrapingDto.commentaireValidation= etatActiviteElm.children(1).text()
 
-                    $elm.get("td[headers='etudes']")
+                    console.log($elm.find("td[headers='etudes']")
                         .find('.italic')
-                        .then((elm) => {
-                            scrapingDto.typeActivite = elm.text()
-                        })
+                        .text())
 
                     $elm.get("td[headers='etudes']")
-                        .find('.tronque')
-                        .first()
+                        .text()
+                        .trim()
                         .then((elm) => {
                             scrapingDto.detailActivite = elm.text()
                         })
 
                     $elm.get("td[headers='etudes']")
                         .find('.tronque')
-                        .child(1)
+                        .children(1)
                         .then((elm) => {
                             scrapingDto.detailActiviteCompl = elm.text()
                         })
@@ -220,7 +219,7 @@ describe('Scrap informations', () => {
             scrapingDto.testLangueFr = null
         } else {
             scrapingDto.testLangueFr = cy.get("#tableauTestLangueContainer")
-                .child()
+                .children()
                 .invoke("text")
         }
 
@@ -230,7 +229,7 @@ describe('Scrap informations', () => {
             scrapingDto.statutNiveauFr = cy.get("#blocNiveauFr")
                 .find("div")
                 .get(1)
-                .child(0)
+                .children(0)
                 .invoke("text")
         }
 
@@ -242,8 +241,8 @@ describe('Scrap informations', () => {
 
         scrapingDto.sejourEnFrance = cy.get("#popinAjoutSej")
                                     .siblings(1)
-                                    .child(3)
-                                    .child()
+                                    .children(3)
+                                    .children()
                                     .invoke("text")
 
 
@@ -284,14 +283,14 @@ describe('Scrap informations', () => {
                 .each( (elm) => {
                     let elmTitreTableau = elm.get(".titreTableau")
 
-                    if (elmTitreTableau.length === 1) {
+                    if (elmTitreTableau. String.note) {
                         let titreTypeFormation = elmTitreTableau
-                            .child(0)
+                            .children(0)
                             .text()
 
                         let etatTypeFormation = elmTitreTableau
-                            .child(1)
-                            .child()
+                            .children(1)
+                            .children()
                             .text()
                     } else {
                         let titreTypeFormation = null
@@ -302,8 +301,8 @@ describe('Scrap informations', () => {
                     cy.get("tbody > tr")
                         .each( (elm) => {
                             let formation = elm.get("td[headers='formation']")
-                                                .child()
-                                                .child()
+                                                .children()
+                                                .children()
                                                 .text()
 
                             let annee = elm.get("td[headers='annee']")
@@ -373,6 +372,7 @@ describe('Scrap informations', () => {
     })
 
     it('Send API Request', () => {
-        cy.request('api/scraping', scrapingDto)
+        console.log(scrapingDto)
+        cy.request('http://127.0.0.1:8000/api/scraping', scrapingDto)
     })
 })

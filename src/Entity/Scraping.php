@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\DTO\ScrapingDTO;
 use App\Repository\ScrapingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -147,6 +149,21 @@ class Scraping
      * @ORM\Column(type="string", length=255)
      */
     private $scolariteFrance;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Scraping::class, inversedBy="scrapings")
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Scraping::class, mappedBy="user")
+     */
+    private $scrapings;
+
+    public function __construct()
+    {
+        $this->scrapings = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -488,6 +505,48 @@ class Scraping
     public function setScolariteFrance(string $scolariteFrance): self
     {
         $this->scolariteFrance = $scolariteFrance;
+
+        return $this;
+    }
+
+    public function getUser(): ?self
+    {
+        return $this->user;
+    }
+
+    public function setUser(?self $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getScrapings(): Collection
+    {
+        return $this->scrapings;
+    }
+
+    public function addScraping(self $scraping): self
+    {
+        if (!$this->scrapings->contains($scraping)) {
+            $this->scrapings[] = $scraping;
+            $scraping->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScraping(self $scraping): self
+    {
+        if ($this->scrapings->removeElement($scraping)) {
+            // set the owning side to null (unless already changed)
+            if ($scraping->getUser() === $this) {
+                $scraping->setUser(null);
+            }
+        }
 
         return $this;
     }

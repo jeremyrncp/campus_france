@@ -1,0 +1,13 @@
+{% extends 'base_adminuser.html.twig' %}
+
+{% block title %}Hello StudentController!{% endblock %}
+
+{% block body %}
+    <div class="text-right">
+        <a class="btn btn-primary">Créer une nouvelle discussion</a>
+    </div>
+    <div class="mt-5">
+        <!-- liste des discussions -->
+        {{  form(addDiscussionForm) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base_adminuser.html.twig' %}
+
+{% block title %}{{ discussion.subject }}{% endblock %}
+{% block title_header %}{{ discussion.subject }}{% endblock %}
+
+{% block body %}
+    <div class="text-right">
+        <a class="btn btn-primary" href="{{  path('student_message_add', {discussion: discussion.id}) }}">Participer à la discussion</a>
+    </div>
+    <div class="mt-5">
+        <!-- liste des messages -->
+        {%  for key, message in discussion.messages %}
+            <a class="card card-custon mt-4">
+                <div class="card-header">
+                    Posté par <b>{{ message.user.email }}</b> le {{ message.dateCreation|date('H:i d-m-Y') }}
+                </div>
+                <div class="card-body text-black">
+                    {{ message.content }}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base_adminuser.html.twig' %}
+
+{% block title %}Hello StudentController!{% endblock %}
+
+{% block body %}
+    <div class="text-right">
+        <a class="btn btn-primary" href="{{  path('student_discussion_add') }}">Créer une nouvelle discussion</a>
+    </div>
+    <div class="mt-5">
+        <!-- liste des discussions -->
+        {%  for discussion in discussions %}
+            <div class="card card-custon mb-4">
+                <div class="card-header">
+                    <a href="{{ path('student_discussion_list', {'id': discussion.id}) }}">{{ discussion.subject }}</a> - par {{ discussion.user }} le {{ discussion.dateCreation|date('H:i d-m-Y') }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base_adminuser.html.twig' %}
+
+{% block title %}Hello StudentController!{% endblock %}
+
+{% block body %}
+    <div class="mt-5">
+        {% if app.user.isVerified == true %}
+            <div class="alert alert-success">
+                Votre forfait est bien actif, vous pouvez utiliser toutes les fonctionnalités de notre application
+            </div>
+        {% else %}
+            <div class="card card-custon mb-4">
+                <div class="card-header">
+                    Forfait
+                </div>
+                <div class="card-body">
+                    <p><a class="btn btn-primary">Acheter un forfait pour seulement 30 euros *</a></p>
+                    <p><b>Vos avantages</b></p>
+                    <ul>
+                        <li>remplissage des éléments manquants à votre candidature</li>
+                        <li>aide personnalisée</li>
+                        <li>accompagnement tout au long de votre parcours étudiant</li>
+                    </ul>
+                    <p>* valable pour une seule rentrée scolaire</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
