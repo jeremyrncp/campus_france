@@ -41,19 +41,21 @@
             </div>
         </div>
     </div>
+    {% if scraping.statutDossier is defined %}
     <div class="card-custon mt-15 card">
         <div class="card-header">
             <h2 class="text-primary">Etat de votre dossier formation "Campus France"</h2>
             <!-- @todo indicate result scraping -->
             <table class="table-hover table ">
                 <tbody>
-                {% for label, value in scraping.statutDossier %}
-                    <tr>
-                        <td><b>{{ value.name }}</b> : {{ value.statut }}</td>
-                    </tr>
-                {% endfor %}
+                    {% for label, value in scraping.statutDossier %}
+                        <tr>
+                            <td><b>{{ value.name }}</b> : {{ value.statut }}</td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
+    {% endif %}
 {% endblock %}
