@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class InternalMessageController extends AbstractController
 {
     /**
-     * @Route("/internal/message", name="internal_message")
+     * @Route("/app/internal/message", name="internal_message")
      *
      * @param Request $request
      * @param InternalMessageRepository $internalMessageRepository

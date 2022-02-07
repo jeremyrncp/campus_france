@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CVController extends AbstractController
 {
     /**
-     * @Route("/moncv", name="student_cv")
+     * @Route("/app/moncv", name="student_cv")
      */
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {

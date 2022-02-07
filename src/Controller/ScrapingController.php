@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ScrapingController extends AbstractController
 {
     /**
-     * @Route("/scraping", name="scraping")
+     * @Route("/app/scraping", name="scraping")
      */
     public function index(ScrapingRepository  $scrapingRepository): Response
     {

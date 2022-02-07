@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class StudentController extends AbstractController
 {
     /**
-     * @Route("/student", name="dashboard_student")
+     * @Route("/app/student", name="dashboard_student")
      */
     public function index(ScrapingRepository $scrapingRepository, CandidateInformationsRepository $candidateInformationsRepository): Response
     {

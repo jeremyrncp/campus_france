@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints\Date;
 class StudentMessageController extends AbstractController
 {
     /**
-     * @Route("/studentdiscussion/addmessage/{discussion}", name="student_message_add")
+     * @Route("/app/studentdiscussion/addmessage/{discussion}", name="student_message_add")
      */
     public function index(Discussion $discussion, Request $request, EntityManagerInterface  $entityManager): Response
     {

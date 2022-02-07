@@ -16,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class StudentDiscussionController extends AbstractController
 {
     /**
-     * @Route("/studentdiscussion", name="student_discussion")
+     * @Route("/app/studentdiscussion", name="student_discussion")
      */
     public function index(DiscussionRepository  $discussionRepository): Response
     {
@@ -36,7 +36,7 @@ class StudentDiscussionController extends AbstractController
     }
 
     /**
-     * @Route("/studentdiscussion/add", name="student_discussion_add")
+     * @Route("/app/studentdiscussion/add", name="student_discussion_add")
      */
     public function add(Request $request, EntityManagerInterface  $entityManager): Response
     {
