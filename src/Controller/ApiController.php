@@ -98,6 +98,7 @@ class ApiController extends AbstractController
                 $paiement->setDate($dateTime);
                 $paiement->setData($event->toArray());
                 $paiement->setAmount($event->data->object->amount/100);
+                $user->setPlanpremium(true);
                 $user->addPaiement($paiement);
 
                 $entityManager->persist($user);

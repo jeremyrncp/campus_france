@@ -17,10 +17,9 @@
                 <div class="card-body">
                     {% if app.user.planpremium == true %}
                         <div class="alert bg-gray-200 mb-15">
-                            <p>Votre offre premium est déjà actif, vous pouvez désormais converser avec l'équipe via un <a href="{{ path('internal_message') }}">messagerie dédiée</a></p>
+                            <p>Votre offre premium est active depuis le {{ paiement.date|date('d-m-Y') }}, vous pouvez communiquer avec l'équipe via la <a href="{{ path('internal_message') }}">messagerie dédiée</a></p>
                         </div>
                     {% endif %}
-
                     <p><a class="btn btn-primary" target="_blank" href="https://buy.stripe.com/test_8wMdSRgYzarSgCsbII">Acheter un forfait pour seulement 30 euros *</a></p>
                     <p><b>Vos avantages</b></p>
                     <ul>
