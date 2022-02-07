@@ -12,5 +12,7 @@
             </ul>
         </div>
     {% endif %}
-    {% include 'scraping/tpl_scraping.html.twig' with {scraping: scraping} %}
+    {% if scraping is not null %}
+        {% include 'scraping/tpl_scraping.html.twig' with {scraping: scraping} %}
+    {% endif %}
 {% endblock %}
