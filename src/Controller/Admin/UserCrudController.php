@@ -23,16 +23,15 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IntegerField::new('id'),
             DateField::new('date'),
-            TextField::new('fullName'),
-            EmailField::new('email'),
-            TextField::new('usernameCampusFrance'),
-            TextField::new('passwordCampusFrance'),
-            BooleanField::new('etatScraping'),
-            FileField::new('cv'),
-            BooleanField::new('isVerified'),
-            BooleanField::new('planpremium')
+            TextField::new('fullName', 'Nom complet'),
+            EmailField::new('email', 'Email'),
+            TextField::new('usernameCampusFrance', 'Nom utilisdateur Campus France'),
+            TextField::new('passwordCampusFrance', 'Mot de passe Campus France'),
+            FileField::new('cv', 'CV'),
+            BooleanField::new('etatScraping', 'Etat scraping'),
+            BooleanField::new('isVerified', 'Compte verifié'),
+            BooleanField::new('planpremium', 'Plan premium')
         ];
     }
 
