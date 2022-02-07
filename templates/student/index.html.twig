@@ -1,20 +1,59 @@
 {% extends 'base_adminuser.html.twig' %}
 
-{% block title %}Hello StudentController!{% endblock %}
+{% block title %}Dashboard Campus France{% endblock %}
+{% block title_header %}Dashboard Campus France{% endblock %}
+
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    {% if app.user.planpremium != true %}
+    <div class="card-custon mt-15 card">
+        <div class="card-header text-info">
+        {% if app.user.paiement is not defined %}
+            <p class="text-right">Pour être accompagné et bénéficier de nos services, <a href="{{ path('student_paiement') }}" class="btn btn-primary">Souscrivez un forfait</a></p>
+        {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    <div class="mt-15 card">
+        <div class="card-header">
+            <h2 class="text-primary">Etat de votre plan premium</h2>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/ubuntu/Desktop/Travail/Projet/campus_france/src/Controller/StudentController.php'|file_link(0) }}">src/Controller/StudentController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/ubuntu/Desktop/Travail/Projet/campus_france/templates/student/index.html.twig'|file_link(0) }}">templates/student/index.html.twig</a></code></li>
-    </ul>
-</div>
+            <div class="mt-15 card">
+                <div class="card-body">
+                    <h3 class="mb-5">Informations personnelles</h3>
+                    <p><b>Situation personnelle actuelle</b> : {{ state.personalInformationsStepOne }}</p>
+                    <p><b>Parcours et diplômes</b> : {{ state.personalInformationsStepTwo }}</p>
+                    <p><b>Compétences linguistiques</b> : {{ state.personalInformationsStepThree }}</p>
+                </div>
+            </div>
+            <div class="mt-5 card">
+                <div class="card-body">
+                    <h3 class="mb-5">Panier de formations</h3>
+                    <p><b>Etat panier formation</b> : {{ state.basketStepOne }}</p>
+                    <p><b>Panier formations</b> : {{ state.basketStepTwo }}</p>
+                </div>
+            </div>
+            <div class="mt-5 card">
+                <div class="card-body">
+                    <h3 class="mb-5">Soumission dossier Campus France</h3>
+                    <p><b>Etat dossier</b> : {{ state.submissionStepOne }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-custon mt-15 card">
+        <div class="card-header">
+            <h2 class="text-primary">Etat de votre dossier formation "Campus France"</h2>
+            <!-- @todo indicate result scraping -->
+            <table class="table-hover table ">
+                <tbody>
+                {% for label, value in scraping.statutDossier %}
+                    <tr>
+                        <td><b>{{ value.name }}</b> : {{ value.statut }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

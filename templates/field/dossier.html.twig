@@ -1,0 +1,5 @@
+<ul>
+    {% for dossier in field.value %}
+        <li><b>{{ dossier.name }}</b> : {{ dossier.statut }}</li>
+    {% endfor %}
+</ul>

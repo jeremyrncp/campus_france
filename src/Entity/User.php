@@ -76,14 +76,52 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $fullName;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Scraping::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $scrapings;
+
+    /**
+     * @ORM\OneToMany(targetEntity=CandidateInformations::class, mappedBy="user", cascade={"persist"})
+     */
+    private $candidateInformations;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cv;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateCV;
+
+    /**
+     * @ORM\OneToMany(targetEntity=InternalMessage::class, mappedBy="user")
+     */
+    private $internalMessages;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $planpremium;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Paiement::class, mappedBy="user", cascade={"persist"})
+     */
+    private $paiements;
 
     public function __construct()
     {
         $this->discussions = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->candidateInformations = new ArrayCollection();
+        $this->internalMessages = new ArrayCollection();
+        $this->paiements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -240,12 +278,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getDiscussion(): Collection
     {
-        return $this->discussion;
+        return $this->discussions;
     }
 
     public function addDiscussion(Message $discussion): self
     {
-        if (!$this->discussion->contains($discussion)) {
+        if (!$this->discussions->contains($discussion)) {
             $this->discussion[] = $discussion;
             $discussion->setUser($this);
         }
@@ -314,6 +352,162 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($message->getUser() === $this) {
                 $message->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getScrapings(): Collection
+    {
+        return $this->scrapings;
+    }
+
+    public function addScraping(Scraping $scraping): self
+    {
+        if (!$this->scrapings->contains($scraping)) {
+            $this->scrapings[] = $scraping;
+            $scraping->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScraping(Scraping $scraping): self
+    {
+        if ($this->scrapings->removeElement($scraping)) {
+            // set the owning side to null (unless already changed)
+            if ($scraping->getUser() === $this) {
+                $scraping->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CandidateInformations[]
+     */
+    public function getCandidateInformations(): Collection
+    {
+        return $this->candidateInformations;
+    }
+
+    public function addCandidateInformation(CandidateInformations $candidateInformation): self
+    {
+        if (!$this->candidateInformations->contains($candidateInformation)) {
+            $this->candidateInformations[] = $candidateInformation;
+            $candidateInformation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidateInformation(CandidateInformations $candidateInformation): self
+    {
+        if ($this->candidateInformations->removeElement($candidateInformation)) {
+            // set the owning side to null (unless already changed)
+            if ($candidateInformation->getUser() === $this) {
+                $candidateInformation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCv(): ?string
+    {
+        return $this->cv;
+    }
+
+    public function setCv(?string $cv): self
+    {
+        $this->cv = $cv;
+
+        return $this;
+    }
+
+    public function getDateCV(): ?\DateTimeInterface
+    {
+        return $this->dateCV;
+    }
+
+    public function setDateCV(\DateTimeInterface $dateCV): self
+    {
+        $this->dateCV = $dateCV;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|InternalMessage[]
+     */
+    public function getInternalMessages(): Collection
+    {
+        return $this->internalMessages;
+    }
+
+    public function addInternalMessage(InternalMessage $internalMessage): self
+    {
+        if (!$this->internalMessages->contains($internalMessage)) {
+            $this->internalMessages[] = $internalMessage;
+            $internalMessage->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInternalMessage(InternalMessage $internalMessage): self
+    {
+        if ($this->internalMessages->removeElement($internalMessage)) {
+            // set the owning side to null (unless already changed)
+            if ($internalMessage->getUser() === $this) {
+                $internalMessage->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPlanpremium(): ?bool
+    {
+        return $this->planpremium;
+    }
+
+    public function setPlanpremium(?bool $planpremium): self
+    {
+        $this->planpremium = $planpremium;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Paiement[]
+     */
+    public function getPaiements(): Collection
+    {
+        return $this->paiements;
+    }
+
+    public function addPaiement(Paiement $paiement): self
+    {
+        if (!$this->paiements->contains($paiement)) {
+            $this->paiements[] = $paiement;
+            $paiement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePaiement(Paiement $paiement): self
+    {
+        if ($this->paiements->removeElement($paiement)) {
+            // set the owning side to null (unless already changed)
+            if ($paiement->getUser() === $this) {
+                $paiement->setUser(null);
             }
         }
 

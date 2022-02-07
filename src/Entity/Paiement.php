@@ -23,9 +23,19 @@ class Paiement
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="paiements")
      */
-    private $statut;
+    private $user;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $data = [];
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $amount;
 
     public function getId(): ?int
     {
@@ -44,14 +54,38 @@ class Paiement
         return $this;
     }
 
-    public function getStatut(): ?string
+    public function getUser(): ?User
     {
-        return $this->statut;
+        return $this->user;
     }
 
-    public function setStatut(string $statut): self
+    public function setUser(?User $user): self
     {
-        $this->statut = $statut;
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getData(): ?array
+    {
+        return $this->data;
+    }
+
+    public function setData(array $data): self
+    {
+        $this->data = $data;
+
+        return $this;
+    }
+
+    public function getAmount(): ?int
+    {
+        return $this->amount;
+    }
+
+    public function setAmount(int $amount): self
+    {
+        $this->amount = $amount;
 
         return $this;
     }

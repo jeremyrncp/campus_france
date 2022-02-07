@@ -2,6 +2,9 @@
 
 namespace App\DTO;
 
+use App\Entity\Scraping;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 class ScrapingDTO
 {
     private $etatInfosPerso;
@@ -9,6 +12,9 @@ class ScrapingDTO
     private $monEmail;
     private $monIdentifiantEtudesenFrance;
     private $photoIdentite;
+
+    private $etatIdentity;
+    private $etatCivil;
 
     private $etatCoordonnees;
     private $contactDetails = [];
@@ -24,9 +30,11 @@ class ScrapingDTO
     private $etudeduFrancais;
     private $sejourEnFrance;
     private $statutNiveauAnglais;
-    private $scolaritenglais;
+    private $scolariteAnglais;
     private $examenAnglais;
     private $autreLangue;
+    private $statutParticulier;
+    private $statutStatutParticulier;
 
     private $statutPanierFormation;
     private $panierFormation = [];
@@ -37,7 +45,7 @@ class ScrapingDTO
     public function __construct(array $params)
     {
         $this->etatInfosPerso = $params['etatInfosPerso'];
-        $this->identifiantsetPhotos = $params['identifiantetPhotos'];
+        $this->identifiantsetPhotos = $params['identifiantsetPhotos'];
         $this->monEmail = $params['monEmail'];
         $this->monIdentifiantEtudesenFrance = $params['monIdentifiantEtudesenFrance'];
         $this->photoIdentite = $params['photoIdentite'];
@@ -52,13 +60,54 @@ class ScrapingDTO
         $this->etudeduFrancais = $params['etudeduFrancais'];
         $this->sejourEnFrance = $params['sejourEnFrance'];
         $this->statutNiveauAnglais = $params['statutNiveauAnglais'];
-        $this->scolaritenglais = $params['scolaritenglais'];
+        $this->scolariteAnglais = $params['scolariteAnglais'];
         $this->examenAnglais = $params['examenAnglais'];
         $this->autreLangue = $params['autreLangue'];
         $this->statutPanierFormation = $params['statutPanierFormation'];
         $this->panierFormation = $params['panierFormation'];
         $this->listeSoumissionDossier = $params['listeSoumissionDossier'];
         $this->statutDossier = $params['statutDossier'];
+        $this->statutCV = $params['statutCV'];
+        $this->etatCivil = $params['etatCivil'];
+        $this->etatIdentity = $params['etatIdentity'];
+        $this->statutParticulier = $params['statutParticulier'];
+        $this->statutStatutParticulier = $params['statutStatutParticulier'];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEtatIdentity()
+    {
+        return $this->etatIdentity;
+    }
+
+    /**
+     * @param mixed $etatIdentity
+     * @return ScrapingDTO
+     */
+    public function setEtatIdentity($etatIdentity)
+    {
+        $this->etatIdentity = $etatIdentity;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEtatCivil()
+    {
+        return $this->etatCivil;
+    }
+
+    /**
+     * @param mixed $etatCivil
+     * @return ScrapingDTO
+     */
+    public function setEtatCivil($etatCivil)
+    {
+        $this->etatCivil = $etatCivil;
+        return $this;
     }
 
     /**
@@ -443,5 +492,62 @@ class ScrapingDTO
     public function setStatutDossier($statutDossier): void
     {
         $this->statutDossier = $statutDossier;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getScolariteAnglais()
+    {
+        return $this->scolaritAnglais;
+    }
+
+    /**
+     * @param mixed $scolaritAnglais
+     */
+    public function setScolariteAnglais($scolaritAnglais): void
+    {
+        $this->scolaritAnglais = $scolaritAnglais;
+    }
+
+    /**
+     * @param Scraping $scraping
+     * @return Scraping
+     */
+    public function fillScraping(Scraping $scraping): Scraping
+    {
+        $scraping->setEtatInfosPerso($this->etatInfosPerso)
+                ->setAutreLangue($this->autreLangue)
+                ->setStatutParticulier($this->statutParticulier)
+                ->setStatutStatutParticulier($this->statutStatutParticulier)
+                ->setDate(new \DateTime())
+                ->setAutreLangue($this->autreLangue)
+                ->setContactDetails($this->contactDetails)
+                ->setEtatCoordoonnees($this->etatCoordonnees)
+                ->setEtudeDuFrancais($this->etudeduFrancais)
+                ->setEtudes($this->etudes)
+                ->setExamenAnglais($this->examenAnglais)
+                ->setMonEmail($this->monEmail)
+                ->setIdentifiantEtudesEnFrance($this->monIdentifiantEtudesenFrance)
+                ->setPhotoIdentite($this->photoIdentite)
+                ->setScolariteFrance($this->scolariteFrance)
+                ->setStatutCV($this->statutCV)
+                ->setPanierFormation($this->panierFormation)
+                ->setTestLanguesFr($this->testLangueFr)
+                ->setStatutParcoursDiplomes($this->statutParcoursDiplomes)
+                ->setStatutPanierFormation($this->statutPanierFormation)
+                ->setStatutNiveauFr($this->statutNiveauFr)
+                ->setStatutNiveauAnglais($this->statutNiveauAnglais)
+                ->setStatutLangues($this->statutLangues)
+                ->setStatutDossier($this->statutDossier)
+                ->setSejourEnFrance($this->sejourEnFrance)
+                ->setScolariteAnglais($this->scolariteAnglais)
+                ->setListeSoumissionDossier($this->listeSoumissionDossier)
+                ->setIdentifiantEtPhotos($this->identifiantsetPhotos)
+                ->setEtatIdentity($this->etatIdentity)
+                ->setEtatCivil($this->etatCivil)
+                ;
+
+        return $scraping;
     }
 }

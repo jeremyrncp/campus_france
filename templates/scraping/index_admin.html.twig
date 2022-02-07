@@ -1,0 +1,16 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block title %}Suivi de votre dossier candidat{% endblock %}
+
+{% block main %}
+    {% if scraping.getToFieldsNotFilled()|length %}
+        <div class="alert alert-warning">
+            <p>A remplir : </p>
+            <ul>
+                {% for field in scraping.getToFieldsNotFilled() %}
+                <li>{{ field }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% include 'scraping/tpl_scraping.html.twig' with {scraping: scraping} %}
+{% endblock %}

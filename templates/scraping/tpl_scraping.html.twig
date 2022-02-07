@@ -1,0 +1,201 @@
+<!-- informations personnelles -->
+<div>
+    <h2 class="text-primary">Mes informations personnelles</h2>
+    <div class="card mt-5 card">
+        <div class="card-header">
+            <h5 class="mt-10">Ma situation personnelle actuelle : <b>{{ scraping.etatInfosPerso }}</b></h5>
+            <!-- @todo indicate result scraping -->
+            <table class="table-hover table mt-15">
+                <tbody>
+                <tr>
+                    <td colspan="6"><h5 class="text-primary">Identifiants et photo : <b>{{ scraping.identifiantEtPhotos }}</b></h5></td>
+                </tr>
+                <tr>
+                    <td><b>Email</b> : {{ scraping.monEmail }}</td>
+                    <td><b>Identifiant</b> : {{ scraping.identifiantEtudesEnFrance }}</td>
+                    <td><b>Photo identité</b> : {{ scraping.photoIdentite }}</td>
+                </tr>
+                <tr>
+                    <td colspan="6">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="6"><h5 class="text-primary">Identité : <b>{{ scraping.etatIdentity }}</b></h5></td>
+                </tr>
+                {% set data = scraping.etatCivil %}
+                <tr>
+                    <td><b>{{ data[0].label }}</b> : {{ data[0].value }}</td>
+                    <td><b>{{ data[1].label }}</b> : {{ data[1].value }}</td>
+                    <td><b>{{ data[2].label }}</b> : {{ data[2].value }}</td>
+                    <td><b>{{ data[3].label }}</b> : {{ data[3].value }}</td>
+                    <td><b>{{ data[4].label }}</b> : {{ data[4].value }}</td>
+                    <td><b>{{ data[5].label }}</b> : {{ data[5].value }}</td>
+                </tr>
+                <tr>
+                    <td><b>{{ data[6].label }}</b> : {{ data[6].value }}</td>
+                    <td><b>{{ data[7].label }}</b> : {{ data[7].value }}</td>
+                    <td><b>{{ data[8].label }}</b> : {{ data[8].value }}</td>
+                </tr>
+                <tr>
+                    <td><b>{{ data[9].label }}</b> : {{ data[9].value }}</td>
+                    <td><b>{{ data[10].label }}</b> : {{ data[10].value }}</td>
+                    <td><b>{{ data[11].label }}</b> : {{ data[11].value }}</td>
+                    <td><b>{{ data[12].label }}</b> : {{ data[12].value }}</td>
+                </tr>
+                <tr>
+                    <td colspan="6">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="6"><h5 class="text-primary">Coordonnées : <b>{{ scraping.etatCoordoonnees }}</b></h5></td>
+                </tr>
+                <tr>{% for label, value in scraping.contactDetails %}
+                        {% set data = value|split("#") %}
+                        <td><b>{{ data[0] }}</b> : {{ data[1] }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td colspan="6">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="6"><h5 class="text-primary">Statut particulier : <b>{{ scraping.statutStatutParticulier }}</b></h5></td>
+                </tr>
+                <tr>
+                    {% for label, value in scraping.statutParticulier %}
+                        {% set data = value|split("#") %}
+                        <td><b>{{ data[0] }}</b> : {{ data[1] }}</td>
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card mt-5 card">
+        <div class="card-header">
+            <h5 class="mt-10">Parcours et diplômes : <b>{{ scraping.statutParcoursDiplomes }}</b></h5>
+
+            <div class="text-right">CV : <b>{{ scraping.statutCV }}</b></div>
+            <table class="table-hover table mt-15">
+                <thead>
+                    <tr>
+                        <th>Annee</th>
+                        <th>Statut validation</th>
+                        <th>Commentaire</th>
+                        <th>Détails activité</th>
+                        <th>Localisation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for label, value in scraping.etudes %}
+                    <tr>
+                        <th>{{ value.annee }}</th>
+                        <th>{{ value.statutValidation }}</th>
+                        <th>{{ value.commentaireValidation }}</th>
+                        <th>{{ value.detailActivite }}<br />{{ value.detailActiviteCompl }}</th>
+                        <th>{{ value.localisation }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="mt-5 card">
+        <div class="card-header">
+            <h5 class="mt-10">Compétences linguistiques : <b>{{ scraping.statutLangues }}</b></h5>
+            <!-- @todo indicate result scraping -->
+            <table class="table-hover table mt-15">
+                <tbody>
+                <tr>
+                    <td colspan="2"><h5 class="text-primary">Mes tests et examens en français</h5></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Test langue française</b> : {{ scraping.testLanguesFR }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><h5 class="text-primary">Etude en France</h5></td>
+                </tr>
+                <tr>
+                    <td><b>Scolarité en France : </b>{{ scraping.scolariteFrance }}</td>
+                    <td><b>Etude du français</b> : {{ scraping.etudeduFrancais }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><h5 class="text-primary">Séjours en France</h5></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Séjour en France : </b>{{ scraping.sejourEnFrance }}</b></td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><h5 class="text-primary">Niveau d'anglais et autre(s) langue(s)</h5></td>
+                </tr>
+                <tr>
+                    <td><b>Statut niveau anglais : </b>{{ scraping.statutNiveauAnglais }}</b></td>
+                    <td><b>Etude en anglais</b> : {{ scraping.scolariteAnglais }}</td>
+                </tr>
+                <tr>
+                    <td><b>Examen anglais</b> : {{ scraping.examenAnglais }}</td>
+                    <td><b>Autre langues</b> : {{ scraping.autreLangue }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Panier formations -->
+<div class="mt-15">
+    <div class="card-custon mt-5 card">
+        <div class="card-header">
+            <h3 class="text-primary">Mon panier formations</h3>
+
+            <h5 class="mt-10">Statut panier formation : <b>{{ scraping.statutPanierFormation }}</b></h5>
+
+            <!-- @todo indicate result scraping -->
+            <table class="table-hover table ">
+                <thead>
+                    <th>Année</th>
+                    <th>Formation</th>
+                    <th>Etablissement</th>
+                    <th>Ville</th>
+                </thead>
+                <tbody>
+                    {% for value in scraping.panierFormation %}
+                        {% if value|length > 0 %}
+                            <tr>
+                                <td>{{ value.annee }}</td>
+                                <td>{{ value.formation }}</td>
+                                <td>{{ value.etablissement }}</td>
+                                <td>{{ value.ville }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Soumission dossier -->
+<div class="mt-15">
+    <div class="card-custon mt-5 card">
+        <div class="card-header">
+            <h2 class="text-primary">Soumission dossier formation</h2>
+            <!-- @todo indicate result scraping -->
+            <table class="table-hover table ">
+                <tbody>
+                {% for label, value in scraping.statutDossier %}
+                <tr>
+                    <td><b>{{ value.name }}</b> : {{ value.statut }}</td>
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -4,8 +4,6 @@ namespace App\Entity;
 
 use App\DTO\ScrapingDTO;
 use App\Repository\ScrapingRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,466 +11,499 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Scraping
 {
+    const FIELD_NAME = ['etatCivil' => 'Etat civil',
+        'etatInfosPerso' => 'Etat informations personnelles',
+        'identifiantEtPhotos' => 'Identifiant et photos',
+        '>monEmail' => 'Mon email',
+        'identifiantEtudesEnFrance' => 'Identifiant Etudes en France',
+        'photoIdentite' => 'Photo identité',
+        'etatCoordoonnees' => 'Etat coordonnées',
+        'contactDetails' => 'Détails de contact',
+        'statutParcoursDiplomes' => 'Statut parcours diplômes',
+        'etudes' => 'Etudes',
+        'statutLangues' => 'Statut langues',
+        'testLanguesFr' => 'Test langues française',
+        'statutNiveauFr' => 'Statut niveau français',
+        'etudeDuFrancais' => 'Etude du français',
+        'sejourEnFrance' => 'Séjour en France',
+        'statutNiveauAnglais' => 'Statut niveau Anglais',
+        'scolariteANglais' => 'Scolarité anglais',
+        'examenAnglais' => 'Examen anglais',
+        'autreLangue' => 'Autre langue',
+        'statutPanierFormation' => 'Statut panier formation',
+        'panierFormation' => 'Panier formation',
+        'listeSoumissionDossier' => 'Liste soumission dossier',
+        'statutDossier' => 'Statut dossier'];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    public $id;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $date;
+    public $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $etatInfosPerso;
+    public $etatInfosPerso;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $identifiantEtPhotos;
+    public $identifiantEtPhotos;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $monEmail;
+    public $monEmail;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $identifiantEtudesEnFrance;
+    public $identifiantEtudesEnFrance;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $photoIdentite;
+    public $photoIdentite;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $etatCoordoonnees;
+    public $etatCoordoonnees;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $contactDetails = [];
+    public $contactDetails = [];
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json", nullable=true)
      */
-    private $etatCivil = [];
+    public $etatCivil = [];
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $statutParcoursDiplomes;
+    public $statutParcoursDiplomes;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $statutCV;
+    public $statutCV;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $etudes = [];
+    public $etudes = [];
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $statutLangues;
+    public $statutLangues;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $testLanguesFr;
+    public $testLanguesFr;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $statutNiveauFr;
+    public $statutNiveauFr;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $etudeDuFrancais;
+    public $etudeDuFrancais;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $sejourEnFrance;
+    public $sejourEnFrance;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $statutNiveauAnglais;
+    public $statutNiveauAnglais;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $scolariteANglais;
+    public $scolariteANglais;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $examenAnglais;
+    public $examenAnglais;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $autreLangue;
+    public $autreLangue;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $statutPanierFormation;
+    public $statutPanierFormation;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $panierFormation = [];
+    public $panierFormation = [];
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json", nullable=true)
      */
-    private $listeSoumissionDossier = [];
+    public $listeSoumissionDossier = [];
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json", nullable=true)
      */
-    private $statutDossier;
+    public $statutDossier;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $scolariteFrance;
+    public $scolariteFrance;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Scraping::class, inversedBy="scrapings")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="scrapings")
      */
-    private $user;
+    public $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=Scraping::class, mappedBy="user")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $scrapings;
+    public $etatIdentity;
 
-    public function __construct()
-    {
-        $this->scrapings = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $statutStatutParticulier;
 
-    public function getId(): ?int
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    public $statutParticulier = [];
+
+
+
+    public  function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public  function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public  function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
 
         return $this;
     }
 
-    public function getEtatInfosPerso(): ?string
+    public  function getEtatInfosPerso(): ?string
     {
         return $this->etatInfosPerso;
     }
 
-    public function setEtatInfosPerso(string $etatInfosPerso): self
+    public  function setEtatInfosPerso(?string $etatInfosPerso): self
     {
         $this->etatInfosPerso = $etatInfosPerso;
 
         return $this;
     }
 
-    public function getIdentifiantEtPhotos(): ?string
+    public  function getIdentifiantEtPhotos(): ?string
     {
         return $this->identifiantEtPhotos;
     }
 
-    public function setIdentifiantEtPhotos(string $identifiantEtPhotos): self
+    public  function setIdentifiantEtPhotos(?string $identifiantEtPhotos): self
     {
         $this->identifiantEtPhotos = $identifiantEtPhotos;
 
         return $this;
     }
 
-    public function getMonEmail(): ?string
+    public  function getMonEmail(): ?string
     {
         return $this->monEmail;
     }
 
-    public function setMonEmail(string $monEmail): self
+    public  function setMonEmail(?string $monEmail): self
     {
         $this->monEmail = $monEmail;
 
         return $this;
     }
 
-    public function getIdentifiantEtudesEnFrance(): ?string
+    public  function getIdentifiantEtudesEnFrance(): ?string
     {
         return $this->identifiantEtudesEnFrance;
     }
 
-    public function setIdentifiantEtudesEnFrance(string $identifiantEtudesEnFrance): self
+    public  function setIdentifiantEtudesEnFrance(?string $identifiantEtudesEnFrance): self
     {
         $this->identifiantEtudesEnFrance = $identifiantEtudesEnFrance;
 
         return $this;
     }
 
-    public function getPhotoIdentite(): ?string
+    public  function getPhotoIdentite(): ?string
     {
         return $this->photoIdentite;
     }
 
-    public function setPhotoIdentite(string $photoIdentite): self
+    public  function setPhotoIdentite(?string $photoIdentite): self
     {
         $this->photoIdentite = $photoIdentite;
 
         return $this;
     }
 
-    public function getEtatCoordoonnees(): ?string
+    public  function getEtatCoordoonnees(): ?string
     {
         return $this->etatCoordoonnees;
     }
 
-    public function setEtatCoordoonnees(string $etatCoordoonnees): self
+    public  function setEtatCoordoonnees(?string $etatCoordoonnees): self
     {
         $this->etatCoordoonnees = $etatCoordoonnees;
 
         return $this;
     }
 
-    public function getContactDetails(): ?array
+    public  function getContactDetails(): ?array
     {
         return $this->contactDetails;
     }
 
-    public function setContactDetails(array $contactDetails): self
+    public  function setContactDetails(?array $contactDetails): self
     {
         $this->contactDetails = $contactDetails;
 
         return $this;
     }
 
-    public function getEtatCivil(): ?array
+    public  function getEtatCivil(): ?array
     {
         return $this->etatCivil;
     }
 
-    public function setEtatCivil(array $etatCivil): self
+    public  function setEtatCivil(?array $etatCivil): self
     {
         $this->etatCivil = $etatCivil;
 
         return $this;
     }
 
-    public function getStatutParcoursDiplomes(): ?string
+    public  function getStatutParcoursDiplomes(): ?string
     {
         return $this->statutParcoursDiplomes;
     }
 
-    public function setStatutParcoursDiplomes(string $statutParcoursDiplomes): self
+    public  function setStatutParcoursDiplomes(?string $statutParcoursDiplomes): self
     {
         $this->statutParcoursDiplomes = $statutParcoursDiplomes;
 
         return $this;
     }
 
-    public function getStatutCV(): ?string
+    public  function getStatutCV(): ?string
     {
         return $this->statutCV;
     }
 
-    public function setStatutCV(string $statutCV): self
+    public  function setStatutCV(?string $statutCV): self
     {
         $this->statutCV = $statutCV;
 
         return $this;
     }
 
-    public function getEtudes(): ?array
+    public  function getEtudes(): ?array
     {
         return $this->etudes;
     }
 
-    public function setEtudes(array $etudes): self
+    public  function setEtudes(?array $etudes): self
     {
         $this->etudes = $etudes;
 
         return $this;
     }
 
-    public function getStatutLangues(): ?string
+    public  function getStatutLangues(): ?string
     {
         return $this->statutLangues;
     }
 
-    public function setStatutLangues(string $statutLangues): self
+    public  function setStatutLangues(?string $statutLangues): self
     {
         $this->statutLangues = $statutLangues;
 
         return $this;
     }
 
-    public function getTestLanguesFr(): ?string
+    public  function getTestLanguesFr(): ?string
     {
         return $this->testLanguesFr;
     }
 
-    public function setTestLanguesFr(string $testLanguesFr): self
+    public  function setTestLanguesFr(?string $testLanguesFr): self
     {
         $this->testLanguesFr = $testLanguesFr;
 
         return $this;
     }
 
-    public function getStatutNiveauFr(): ?string
+    public  function getStatutNiveauFr(): ?string
     {
         return $this->statutNiveauFr;
     }
 
-    public function setStatutNiveauFr(string $statutNiveauFr): self
+    public  function setStatutNiveauFr(?string $statutNiveauFr): self
     {
         $this->statutNiveauFr = $statutNiveauFr;
 
         return $this;
     }
 
-    public function getEtudeDuFrancais(): ?string
+    public  function getEtudeDuFrancais(): ?string
     {
         return $this->etudeDuFrancais;
     }
 
-    public function setEtudeDuFrancais(string $etudeDuFrancais): self
+    public  function setEtudeDuFrancais(?string $etudeDuFrancais): self
     {
         $this->etudeDuFrancais = $etudeDuFrancais;
 
         return $this;
     }
 
-    public function getSejourEnFrance(): ?string
+    public  function getSejourEnFrance(): ?string
     {
         return $this->sejourEnFrance;
     }
 
-    public function setSejourEnFrance(string $sejourEnFrance): self
+    public  function setSejourEnFrance(?string $sejourEnFrance): self
     {
         $this->sejourEnFrance = $sejourEnFrance;
 
         return $this;
     }
 
-    public function getStatutNiveauAnglais(): ?string
+    public  function getStatutNiveauAnglais(): ?string
     {
         return $this->statutNiveauAnglais;
     }
 
-    public function setStatutNiveauAnglais(string $statutNiveauAnglais): self
+    public  function setStatutNiveauAnglais(?string $statutNiveauAnglais): self
     {
         $this->statutNiveauAnglais = $statutNiveauAnglais;
 
         return $this;
     }
 
-    public function getScolariteANglais(): ?string
+    public  function getScolariteANglais(): ?string
     {
         return $this->scolariteANglais;
     }
 
-    public function setScolariteANglais(string $scolariteANglais): self
+    public  function setScolariteANglais(?string $scolariteANglais): self
     {
         $this->scolariteANglais = $scolariteANglais;
 
         return $this;
     }
 
-    public function getExamenAnglais(): ?string
+    public  function getExamenAnglais(): ?string
     {
         return $this->examenAnglais;
     }
 
-    public function setExamenAnglais(string $examenAnglais): self
+    public  function setExamenAnglais(?string $examenAnglais): self
     {
         $this->examenAnglais = $examenAnglais;
 
         return $this;
     }
 
-    public function getAutreLangue(): ?string
+    public  function getAutreLangue(): ?string
     {
         return $this->autreLangue;
     }
 
-    public function setAutreLangue(string $autreLangue): self
+    public  function setAutreLangue(?string $autreLangue): self
     {
         $this->autreLangue = $autreLangue;
 
         return $this;
     }
 
-    public function getStatutPanierFormation(): ?string
+    public  function getStatutPanierFormation(): ?string
     {
         return $this->statutPanierFormation;
     }
 
-    public function setStatutPanierFormation(string $statutPanierFormation): self
+    public  function setStatutPanierFormation(?string $statutPanierFormation): self
     {
         $this->statutPanierFormation = $statutPanierFormation;
 
         return $this;
     }
 
-    public function getPanierFormation(): ?array
+    public  function getPanierFormation(): ?array
     {
         return $this->panierFormation;
     }
 
-    public function setPanierFormation(array $panierFormation): self
+    public  function setPanierFormation(?array $panierFormation): self
     {
         $this->panierFormation = $panierFormation;
 
         return $this;
     }
 
-    public function getListeSoumissionDossier(): ?array
+    public  function getListeSoumissionDossier(): ?array
     {
         return $this->listeSoumissionDossier;
     }
 
-    public function setListeSoumissionDossier(array $listeSoumissionDossier): self
+    public  function setListeSoumissionDossier(?array $listeSoumissionDossier): self
     {
         $this->listeSoumissionDossier = $listeSoumissionDossier;
 
         return $this;
     }
 
-    public function getStatutDossier(): ?string
+    public  function getStatutDossier(): ?array
     {
         return $this->statutDossier;
     }
 
-    public function setStatutDossier(string $statutDossier): self
+    public  function setStatutDossier(?array $statutDossier): self
     {
         $this->statutDossier = $statutDossier;
 
         return $this;
     }
 
-    public function hydrate(ScrapingDTO $scrapingDTO)
+    public  function hydrate(ScrapingDTO $scrapingDTO)
     {
         $this->date = new \DateTime();
+        $this->etatIdentity = $scrapingDTO->getEtatIdentity();
+        $this->etatCivil = $scrapingDTO->getEtatCivil();
         $this->etatInfosPerso = $scrapingDTO->getEtatInfosPerso();
         $this->identifiantEtPhotos = $scrapingDTO->getIdentifiantsetPhotos();
         $this->monEmail = $scrapingDTO->getMonEmail();
@@ -497,57 +528,92 @@ class Scraping
         $this->statutDossier = $scrapingDTO->getStatutDossier();
     }
 
-    public function getScolariteFrance(): ?string
+    public  function getScolariteFrance(): ?string
     {
         return $this->scolariteFrance;
     }
 
-    public function setScolariteFrance(string $scolariteFrance): self
+    public  function setScolariteFrance(?string $scolariteFrance): self
     {
         $this->scolariteFrance = $scolariteFrance;
 
         return $this;
     }
 
-    public function getUser(): ?self
+    public  function getUser(): User
     {
         return $this->user;
     }
 
-    public function setUser(?self $user): self
+    public  function setUser(User $user): self
     {
         $this->user = $user;
 
         return $this;
     }
 
-    /**
-     * @return Collection|self[]
-     */
-    public function getScrapings(): Collection
+    public  function getEtatIdentity(): ?string
     {
-        return $this->scrapings;
+        return $this->etatIdentity;
     }
 
-    public function addScraping(self $scraping): self
+    public  function setEtatIdentity(?string $etatIdentity): self
     {
-        if (!$this->scrapings->contains($scraping)) {
-            $this->scrapings[] = $scraping;
-            $scraping->setUser($this);
-        }
+        $this->etatIdentity = $etatIdentity;
 
         return $this;
     }
 
-    public function removeScraping(self $scraping): self
+    public  function getStatutStatutParticulier(): ?string
     {
-        if ($this->scrapings->removeElement($scraping)) {
-            // set the owning side to null (unless already changed)
-            if ($scraping->getUser() === $this) {
-                $scraping->setUser(null);
+        return $this->statutStatutParticulier;
+    }
+
+    public  function setStatutStatutParticulier(?string $statutStatutParticulier): self
+    {
+        $this->statutStatutParticulier = $statutStatutParticulier;
+
+        return $this;
+    }
+
+    public  function getStatutParticulier(): ?array
+    {
+        return $this->statutParticulier;
+    }
+
+    public  function setStatutParticulier(?array $statutParticulier): self
+    {
+        $this->statutParticulier = $statutParticulier;
+
+        return $this;
+    }
+
+    public  function transformData(array $initialData)
+    {
+        $tbl = [];
+
+        foreach ($initialData as $initial) {
+            $data = explode('#', $initial);
+            $tbl[$data[0]] = $tbl[$data[1]];
+        }
+
+        return $tbl;
+    }
+
+    /**
+     * @return array
+     */
+    public  function getToFieldsNotFilled()
+    {
+        $emptyFields = [];
+        $reflector = new \ReflectionClass($this);
+
+        foreach ($reflector->getProperties() as $property) {
+            if (empty($property->getValue($this))) {
+                array_push($emptyFields, self::FIELD_NAME[$property->getName()]);
             }
         }
 
-        return $this;
+        return $emptyFields;
     }
 }

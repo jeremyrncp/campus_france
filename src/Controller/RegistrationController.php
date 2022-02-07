@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\CandidateInformations;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
@@ -45,6 +46,8 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setDate(new \DateTime());
+
+            $user->addCandidateInformation(new CandidateInformations());
 
             $entityManager->persist($user);
             $entityManager->flush();

@@ -1,12 +1,13 @@
 {% extends 'base_adminuser.html.twig' %}
 
-{% block title %}Hello StudentController!{% endblock %}
+{% block title %}Paiement{% endblock %}
+{% block title_header %}Paiement{% endblock %}
 
 {% block body %}
     <div class="mt-5">
         {% if app.user.isVerified == true %}
             <div class="alert alert-success">
-                Votre forfait est bien actif, vous pouvez utiliser toutes les fonctionnalités de notre application
+                <p>Votre forfait est bien actif, vous pouvez utiliser toutes les fonctionnalités de l'application.</p>
             </div>
         {% else %}
             <div class="card card-custon mb-4">
@@ -14,12 +15,21 @@
                     Forfait
                 </div>
                 <div class="card-body">
-                    <p><a class="btn btn-primary">Acheter un forfait pour seulement 30 euros *</a></p>
+                    {% if app.user.planpremium == true %}
+                        <div class="alert bg-gray-200 mb-15">
+                            <p>Votre offre premium est déjà actif, vous pouvez désormais converser avec l'équipe via un <a href="{{ path('internal_message') }}">messagerie dédiée</a></p>
+                        </div>
+                    {% endif %}
+
+                    <p><a class="btn btn-primary" target="_blank" href="https://buy.stripe.com/test_8wMdSRgYzarSgCsbII">Acheter un forfait pour seulement 30 euros *</a></p>
                     <p><b>Vos avantages</b></p>
                     <ul>
-                        <li>remplissage des éléments manquants à votre candidature</li>
-                        <li>aide personnalisée</li>
-                        <li>accompagnement tout au long de votre parcours étudiant</li>
+                        <li>Remplissage de votre Espace Campus France</li>
+                        <li>Rédaction de votre Projet d’étude et professionnel</li>
+                        <li>Choix 7 vœux des universités partenaires avec campus France</li>
+                        <li>Mise en relation avec des universités privés en dehors de Campus France</li>
+                        <li>Coaching entretien Campus France</li>
+                        <li>Modification CV</li>
                     </ul>
                     <p>* valable pour une seule rentrée scolaire</p>
                 </div>

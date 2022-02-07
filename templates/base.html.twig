@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Business Frontpage - Start Bootstrap Template</title>
+    <title>Campus France</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -17,14 +17,15 @@
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
-        <a class="navbar-brand" href="#!">Start Bootstrap</a>
+        <a class="navbar-brand" href="#!">Campus France</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Services</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Accueil</a></li>
+
+                {% if app.user is not null %}
+                <li class="nav-item"><a class="nav-link" href="{{ path('dashboard_student')}}">Tableau de bord</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -35,8 +36,8 @@
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
                 <div class="text-center my-5">
-                    <h1 class="display-5 fw-bolder text-white mb-2">Present your business in a whole new way</h1>
-                    <p class="lead text-white-50 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+                    <h1 class="display-5 fw-bolder text-white mb-2">Campus France</h1>
+                    <p class="lead text-white-50 mb-4">Lora ipsum lora ipsum lora ipsum lora ipsum</p>
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                         <a class="btn btn-primary btn-lg px-4 me-sm-3" href="/login">Se connecter</a>
                         <a class="btn btn-outline-light btn-lg px-4" href="/register">Pas encore inscrit ?</a>
@@ -51,7 +52,7 @@
     <div class="container px-5 my-5">
         <div class="row gx-5">
             <div class="col-lg-4 mb-5 mb-lg-0">
-                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+f                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
                 <h2 class="h4 fw-bolder">Featured title</h2>
                 <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
                 <a class="text-decoration-none" href="#!">
@@ -91,46 +92,36 @@
             <div class="col-lg-6 col-xl-4">
                 <div class="card mb-5 mb-xl-0">
                     <div class="card-body p-5">
-                        <div class="small text-uppercase fw-bold text-muted">Free</div>
                         <div class="mb-3">
-                            <span class="display-4 fw-bold">$0</span>
-                            <span class="text-muted">/ mo.</span>
+                            <span class="display-4 fw-bold">30 €</span>
                         </div>
                         <ul class="list-unstyled mb-4">
                             <li class="mb-2">
                                 <i class="bi bi-check text-primary"></i>
-                                <strong>1 users</strong>
+                                Remplissage de votre Espace Campus France
                             </li>
                             <li class="mb-2">
                                 <i class="bi bi-check text-primary"></i>
-                                5GB storage
+                                Rédaction de votre Projet d’étude et professionnel
                             </li>
                             <li class="mb-2">
                                 <i class="bi bi-check text-primary"></i>
-                                Unlimited public projects
+                                Choix 7 vœux des universités partenaires avec campus France
                             </li>
                             <li class="mb-2">
                                 <i class="bi bi-check text-primary"></i>
-                                Community access
+                                Mise en relation avec des universités privés en dehors de Campus France
                             </li>
                             <li class="mb-2 text-muted">
-                                <i class="bi bi-x"></i>
-                                Unlimited private projects
+                                <i class="bi bi-check"></i>
+                                Coaching entretien Campus France
                             </li>
                             <li class="mb-2 text-muted">
-                                <i class="bi bi-x"></i>
-                                Dedicated support
-                            </li>
-                            <li class="mb-2 text-muted">
-                                <i class="bi bi-x"></i>
-                                Free linked domain
-                            </li>
-                            <li class="text-muted">
-                                <i class="bi bi-x"></i>
-                                Monthly status reports
+                                <i class="bi bi-check"></i>
+                                Modification CV
                             </li>
                         </ul>
-                        <div class="d-grid"><a class="btn btn-outline-primary" href="#!">Choose plan</a></div>
+                        <div class="d-grid"><a class="btn btn-outline-primary" href="/login">Souscrire</a></div>
                     </div>
                 </div>
             </div>
@@ -243,7 +234,7 @@
 </section>
 <!-- Footer-->
 <footer class="py-5 bg-dark">
-    <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+    <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Campus France 2022</p></div>
 </footer>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -254,5 +245,18 @@
 <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/61fed1c9b9e4e21181bda4d6/1fr5m6v54';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>

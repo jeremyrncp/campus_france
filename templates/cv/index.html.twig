@@ -1,0 +1,25 @@
+{% extends 'base_adminuser.html.twig' %}
+
+{% block title %}Votre CV{% endblock %}
+{% block title_header %}Votre CV{% endblock %}
+
+
+{% block body %}
+    <!-- CV actuel -->
+    <div class="card mb-10">
+        <div class="card-body">
+            {% if app.user.cv is defined %}
+            <p>CV envoyé pour la dernière fois le {{ app.user.dateCV|date('H:i d-m-Y') }} - <a href="uploads/{{ app.user.cv }}" target="_blank">Télécharger votre CV</a></p>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Envoie CV -->
+    <div class="card">
+        <div class="card-header">
+            <p>Afin de remplir votre dossier, nous vous invitons à envoyer votre CV au format PDF ou Word</p>
+        </div>
+        <div class="card-body">
+            {{ form(cvForm) }}
+        </div>
+    </div>
+{% endblock %}

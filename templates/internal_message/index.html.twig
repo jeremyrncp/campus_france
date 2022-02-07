@@ -1,0 +1,35 @@
+{% extends 'base_adminuser.html.twig' %}
+
+{% block title %}Mes échanges{% endblock %}
+{% block title_header %}Mes échanges{% endblock %}
+
+{% block body %}
+    {% if app.user.planpremium == true %}
+    <div>
+        {{ form(form) }}
+    </div>
+    {% else %}
+        <div class="card">
+            <div class="card-header">
+                <p>Vous devez souscrire un abonnement pour pouvoir <a href="{{ path('internal_message') }}">échanger avec l'équipe</a>.</p>
+                <p class="text-right"><a href="{{ path('student_paiement') }}" class="btn btn-primary">Souscrire un forfait</a></p>
+            </div>
+        </div>
+    {% endif %}
+    <div class="mt-15">
+        <h3>Messages</h3>
+        {% for message in internalMessages %}
+            {% if message.isAdminResponse == true %}
+                <div class="alert alert-info">
+                    <p><b>Posté le {{ message.date|date('H:i d-m-Y') }} par Administrateur</b></p>
+                    <p>{{ message.content }}</p>
+                </div>
+            {% else %}
+                <div class="alert bg-gray-300">
+                    <p><b>Posté le {{ message.date|date('H:i d-m-Y') }}</b></p>
+                    <p>{{ message.content }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

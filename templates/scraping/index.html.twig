@@ -1,20 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_adminuser.html.twig' %}
 
-{% block title %}Hello ScrapingController!{% endblock %}
+{% block title %}Suivi de votre dossier candidat{% endblock %}
+{% block title_header %}Suivi de votre dossier candidat{% endblock %}
+
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    {% if app.user.paiement is not defined %}
+        <p class="text-right"><a href="{{ path('student_paiement') }}" class="btn btn-primary">Souscrire un forfait</a></p>
+    {% endif %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/ubuntu/Desktop/Travail/Projet/campus_france/src/Controller/ScrapingController.php'|file_link(0) }}">src/Controller/ScrapingController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/ubuntu/Desktop/Travail/Projet/campus_france/templates/scraping/index.html.twig'|file_link(0) }}">templates/scraping/index.html.twig</a></code></li>
-    </ul>
-</div>
+    {% include 'scraping/tpl_scraping.html.twig' with {scraping: scraping} %}
 {% endblock %}
