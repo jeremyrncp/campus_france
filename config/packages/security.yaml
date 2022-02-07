@@ -13,13 +13,21 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
+        users_in_memory:
+            memory:
+                users:
+                    admin@admin.com: { password: '$2y$13$HK6r3bRTRpgGq/S60s9x4ehuawAVYhpLlb9IdgOc/.sfmyGgJ62Da' , roles: [ 'ROLE_ADMIN' ] }
+        chain_provider:
+            chain:
+                providers: [ users_in_memory, app_user_provider ]
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: app_user_provider
+            provider: chain_provider
             custom_authenticator: App\Security\AppCustomAuthenticator
             logout:
                 path: app_logout
