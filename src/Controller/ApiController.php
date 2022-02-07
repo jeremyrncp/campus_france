@@ -85,6 +85,11 @@ class ApiController extends AbstractController
 
                 $user = $userRepository->findOneBy(['email' => $billingDetails->email]);
 
+                if (is_null($user)) {
+                    http_response_code(400);
+                    exit();
+                }
+
                 $paiement = new Paiement();
 
                 $dateTime = new \DateTime();
