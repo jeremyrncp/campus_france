@@ -86,7 +86,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $scrapings;
 
     /**
-     * @ORM\OneToMany(targetEntity=CandidateInformations::class, mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=CandidateInformations::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $candidateInformations;
 
@@ -101,7 +101,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $dateCV;
 
     /**
-     * @ORM\OneToMany(targetEntity=InternalMessage::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=InternalMessage::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $internalMessages;
 
@@ -111,12 +111,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $planpremium;
 
     /**
-     * @ORM\OneToMany(targetEntity=Paiement::class, mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Paiement::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $paiements;
 
     /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $tasks;
 
