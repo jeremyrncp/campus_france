@@ -2,7 +2,7 @@ import scrapingDto from './scrapingDto'
 
 describe('Scrap informations', () => {
     it('Login & identity picture', () => {
-        cy.login('{{usernameCampusFrance}}', '{{passwordCampusFrance}}')
+        cy.login('Fifassigankoue@gmail.com', 'Aubierge2019!')
 
         cy.get("#etatInfosPerso")
             .invoke("text")
@@ -161,7 +161,7 @@ describe('Scrap informations', () => {
             })
     })
     it("My background and my diplomas", () => {
-        cy.login('{{usernameCampusFrance}}', '{{passwordCampusFrance}}')
+        cy.login('Fifassigankoue@gmail.com', 'Aubierge2019!')
 
         cy.get("a[title='1.1 - Je saisis mes informations personnelles']")
             .click()
@@ -226,7 +226,7 @@ describe('Scrap informations', () => {
             })
     })
     it('Language skills', () => {
-        cy.login('{{usernameCampusFrance}}', '{{passwordCampusFrance}}')
+        cy.login('Fifassigankoue@gmail.com', 'Aubierge2019!')
 
         cy.get("a[title='1.1 - Je saisis mes informations personnelles']")
             .click()
@@ -322,7 +322,7 @@ describe('Scrap informations', () => {
         }
     })
     it('Wallet diplomas', () => {
-        cy.login('{{usernameCampusFrance}}', '{{passwordCampusFrance}}')
+        cy.login('Fifassigankoue@gmail.com', 'Aubierge2019!')
 
         cy.get("a[title='1.2 - Je remplis mon panier de formations']")
             .click()
@@ -381,7 +381,7 @@ describe('Scrap informations', () => {
         }
     })
     it('Candidate folder Campus France', () => {
-        cy.login('{{usernameCampusFrance}}', '{{passwordCampusFrance}}')
+        cy.login('Fifassigankoue@gmail.com', 'Aubierge2019!')
 
         cy.get("a[title=\"1.3 - Je soumets mon dossier à l'espace Campus France\"]")
             .click()
@@ -411,6 +411,6 @@ describe('Scrap informations', () => {
         })
     })
     it('Send API Request', () => {
-        cy.request('POST', 'http://{{domain}}/api/scraping?usernameEtudes={{usernameCampusFrance}}', scrapingDto)
+        cy.request('POST', 'http://campus-france-9addo.ondigitalocean.app/api/scraping?usernameEtudes=Fifassigankoue@gmail.com', scrapingDto)
     })
 })

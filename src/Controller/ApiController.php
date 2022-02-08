@@ -81,7 +81,6 @@ class ApiController extends AbstractController
         switch ($event->type) {
             case 'payment_intent.succeeded':
                 $billingDetails = $event->data->object->charges->data[0]->billing_details;
-                @file_put_contents(__DIR__ . '/' . time() . 'payment', serialize($billingDetails));
 
                 $user = $userRepository->findOneBy(['email' => $billingDetails->email]);
 

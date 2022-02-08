@@ -8,6 +8,7 @@ use App\Entity\InternalMessage;
 use App\Entity\Message;
 use App\Entity\Paiement;
 use App\Entity\Scraping;
+use App\Entity\Task;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -40,6 +41,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Statuts dossier candidat', 'fas fa-file', CandidateInformations::class);
         yield MenuItem::linkToCrud('Messagerie interne', 'far fa-comments', InternalMessage::class);
         yield MenuItem::linkToCrud('Scrapings', 'fas fa-file', Scraping::class);
+        yield MenuItem::linkToCrud('Tâches', 'fas fa-tasks', Task::class);
         yield MenuItem::linkToCrud('Discussions', 'far fa-comments', Discussion::class);
         yield MenuItem::linkToCrud('Messages', 'fab fa-rocketchat', Message::class);
     }

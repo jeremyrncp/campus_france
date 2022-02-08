@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\ContactFormType;
 use App\Repository\ScrapingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,21 +38,23 @@ class IndexController extends AbstractController
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
-            $this->sendEmail($this->getParameter('emailscontact'));
+            $data = $contactForm->getData();
 
-            $this->addFlash('flashes', 'Email envoyé avec succès, vous recevrez un autre  e-mail dès que votre dossier sera pris en charge par nos services');
+            $this->sendEmail($this->getParameter('emailscontact'), $data['email'], $data['content']);
+
+            $this->addFlash('flashes', 'Email envoyé avec succès');
         }
 
         return $this->render('index.html.twig', [
-            'scraping' => $scrapingRepository->findOneBy(['user' => $this->getUser()]),
             'form' => $contactForm->createView()
         ]);
     }
 
-    private function sendEmail($emails)
+    private function sendEmail($emails, $replyTo, $content)
     {
         $email = (new Email())
-            ->from('contact@ŋaultierweb.com');
+            ->from('contact@ŋaultierweb.com')
+            ->replyTo($replyTo);
 
         foreach ($emails as $emailList) {
             $email->to($emailList);
@@ -59,7 +62,7 @@ class IndexController extends AbstractController
 
         $email
             ->subject('Contact')
-            ->setBody();
+            ->text($content);
 
         $this->mailer->send($email);
     }

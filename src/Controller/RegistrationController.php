@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\CandidateInformations;
+use App\Entity\Task;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
+use App\Service\ScrapingService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,9 +25,15 @@ class RegistrationController extends AbstractController
      */
     private $emailVerifier;
 
-    public function __construct(EmailVerifier $emailVerifier)
+    /**
+     * @var ScrapingService
+     */
+    private $scrapingService;
+
+    public function __construct(EmailVerifier $emailVerifier, ScrapingService $scrapingService)
     {
         $this->emailVerifier = $emailVerifier;
+        $this->scrapingService = $scrapingService;
     }
 
     /**
@@ -46,9 +54,19 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setDate(new \DateTime());
-
             $user->addCandidateInformation(new CandidateInformations());
 
+
+            /** @var User $data */
+            $data = $form->getData();
+            $pathTemplate = $this->scrapingService->fillTemplate($data->getUsernameCampusFrance(), $data->getPasswordCampusFrance());
+
+            $task = new Task();
+            $task->setDate(new \DateTime());
+            $task->setUser($user);
+            $task->setPathScraping($pathTemplate);
+
+            $user->addTask($task);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -60,6 +78,7 @@ class RegistrationController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
+
 
             return $this->redirectToRoute('dashboard_student');
         }

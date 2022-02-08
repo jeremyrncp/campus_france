@@ -19,6 +19,7 @@
                         <div class="alert bg-gray-200 mb-15">
                             <p>Votre offre premium est active, vous pouvez communiquer avec l'équipe via la <a href="{{ path('internal_message') }}">messagerie dédiée</a></p>
 
+                            <p>Paiement(s) effectué(s) le :</p>
                             <ul>
                                 {% for paiement in app.user.paiements %}
                                     <li>{{ paiement.date|date('d-m-Y') }}</li>

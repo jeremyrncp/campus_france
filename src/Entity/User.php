@@ -115,6 +115,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $paiements;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="user", cascade={"persist"})
+     */
+    private $tasks;
+
     public function __construct()
     {
         $this->discussions = new ArrayCollection();
@@ -122,6 +127,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->candidateInformations = new ArrayCollection();
         $this->internalMessages = new ArrayCollection();
         $this->paiements = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -508,6 +514,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($paiement->getUser() === $this) {
                 $paiement->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Task[]
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
+    public function addTask(Task $task): self
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTask(Task $task): self
+    {
+        if ($this->tasks->removeElement($task)) {
+            // set the owning side to null (unless already changed)
+            if ($task->getUser() === $this) {
+                $task->setUser(null);
             }
         }
 
