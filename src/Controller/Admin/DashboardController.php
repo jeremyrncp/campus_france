@@ -43,7 +43,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Statuts dossier candidat', 'fas fa-file', CandidateInformations::class);
         yield MenuItem::linkToCrud('Messagerie interne', 'far fa-comments', InternalMessage::class);
         yield MenuItem::linkToCrud('Discussions (forum)', 'far fa-comments', Discussion::class);
-        yield MenuItem::linkToCrud('Messages (forum', 'fab fa-rocketchat', Message::class);
+        yield MenuItem::linkToCrud('Messages (forum)', 'fab fa-rocketchat', Message::class);
     }
 
     /**
