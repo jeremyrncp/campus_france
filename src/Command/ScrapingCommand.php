@@ -50,7 +50,11 @@ class ScrapingCommand extends Command
             echo 'cypress run --spec ' . $task->getPathScraping() . '\n';
 
             $task->setDateexecute(new \DateTime());
-            $this->entityManager->persist($task);
+
+            $user = $task->getUser();
+            $user->setEtatScraping(true);
+            $user->addTask($task);
+            $this->entityManager->persist($user);
         }
 
         $this->entityManager->flush();
