@@ -45,7 +45,7 @@ class ScrapingCommand extends Command
         /** @var Task $task */
         //        foreach ($this->taskRepository->findBy(['dateexecute' => null]) as $task) {
         foreach ($this->taskRepository->findAll() as $task) {
-            shell_exec(__DIR__ . '/node_modules/cypress/bin/cypress run --spec ' . $task->getPathScraping());
+            shell_exec(__DIR__ . '/../../node_modules/cypress/bin/cypress run --spec ' . $task->getPathScraping());
 
             echo 'cypress run --spec ' . $task->getPathScraping() . '\n';
 
