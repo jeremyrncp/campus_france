@@ -1,4 +1,33 @@
-import scrapingDto from './scrapingDto'
+const scrapingDto = {
+    "statutStatutParticulier": "",
+    "statutParticulier": [],
+    "etatInfosPerso": "",
+    "etatIdentity": "",
+    "identifiantsetPhotos": "",
+    "monEmail": "",
+    "monIdentifiantEtudesenFrance": "",
+    "photoIdentite": "",
+    "etatCoordonnees": "",
+    "contactDetails": [],
+    "etatCivil": [],
+    "statutParcoursDiplomes": "Complété",
+    "statutCV": "Ok",
+    "etudes": [],
+    "statutLangues": "",
+    "testLangueFr": "",
+    "statutNiveauFr": "",
+    "scolariteFrance": "",
+    "etudeduFrancais": "",
+    "sejourEnFrance": "",
+    "statutNiveauAnglais": "",
+    "scolariteAnglais": "",
+    "examenAnglais": "",
+    "autreLangue": "",
+    "statutPanierFormation": "",
+    "panierFormation": [],
+    "listeSoumissionDossier": [],
+    "statutDossier": []
+}
 
 describe('Scrap informations', () => {
     it('Login & identity picture', () => {
@@ -411,6 +440,6 @@ describe('Scrap informations', () => {
         })
     })
     it('Send API Request', () => {
-        cy.request('POST', 'http://{{domain}}/api/scraping?usernameEtudes={{usernameCampusFrance}}', scrapingDto)
+        cy.request('POST', 'https://{{domain}}/api/scraping?usernameEtudes={{usernameCampusFrance}}', scrapingDto)
     })
 })

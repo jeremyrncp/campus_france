@@ -26,5 +26,8 @@ services:
     App\Service\ScrapingService:
         class: App\Service\ScrapingService
         arguments: {$templateDir: '%kernel.project_dir%/cypress/integration/scraping/', $domain: 'campus-france-9addo.ondigitalocean.app'}
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+
+    App\Command\ScrapingCommand:
+        arguments: {$name: 'app:scraping'}
+        tags:
+            - { name: shapecode_cron.cron_job, expression: '@hourly' }
