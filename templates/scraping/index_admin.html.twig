@@ -2,16 +2,6 @@
 {% block title %}Suivi de votre dossier candidat{% endblock %}
 
 {% block main %}
-    {% if scraping.getToFieldsNotFilled()|length %}
-        <div class="alert alert-warning">
-            <p>A remplir : </p>
-            <ul>
-                {% for field in scraping.getToFieldsNotFilled() %}
-                <li>{{ field }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
     {% if scraping is not null %}
         {% include 'scraping/tpl_scraping.html.twig' with {scraping: scraping} %}
     {% endif %}

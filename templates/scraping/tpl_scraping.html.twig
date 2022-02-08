@@ -1,3 +1,13 @@
+{% if scraping.getToFieldsNotFilled()|length %}
+    <div class="alert alert-warning">
+        <p>A remplir : </p>
+        <ul>
+            {% for field in scraping.getToFieldsNotFilled() %}
+                <li>{{ field }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 <!-- informations personnelles -->
 <div>
     <h2 class="text-primary">Mes informations personnelles</h2>

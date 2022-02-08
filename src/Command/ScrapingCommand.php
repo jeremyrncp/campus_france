@@ -42,12 +42,16 @@ class ScrapingCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        shell_exec('cd ' . __DIR__ . '/../../bin/ && wget https://cdn.cypress.io/desktop/6.8.0/linux-x64/cypress.zip  && unzip cypress.zip  && rm -f cypress.zip');
-
         /** @var Task $task */
         //        foreach ($this->taskRepository->findBy(['dateexecute' => null]) as $task) {
         foreach ($this->taskRepository->findAll() as $task) {
-            shell_exec(__DIR__ . '/../../bin/Cypress/Cypress run --spec ' . $task->getPathScraping());
+
+            /**
+            if ($_SERVER['APP_ENV'] === 'dev') {
+            }
+            **/
+
+            shell_exec(__DIR__ . '/../../node_modules/.bin/cypress run --spec "' . $task->getPathScraping().'"');
 
             $task->setDateexecute(new \DateTime());
             $user = $task->getUser();
