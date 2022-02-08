@@ -39,9 +39,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Paiements', 'fas fa-dollar-sign', Paiement::class);
         yield MenuItem::linkToCrud('Scrapings', 'fas fa-file', Scraping::class);
+        yield MenuItem::linkToCrud('Tâches (scraping)', 'fas fa-tasks', Task::class);
         yield MenuItem::linkToCrud('Statuts dossier candidat', 'fas fa-file', CandidateInformations::class);
         yield MenuItem::linkToCrud('Messagerie interne', 'far fa-comments', InternalMessage::class);
-        yield MenuItem::linkToCrud('Tâches', 'fas fa-tasks', Task::class);
         yield MenuItem::linkToCrud('Discussions (forum)', 'far fa-comments', Discussion::class);
         yield MenuItem::linkToCrud('Messages (forum', 'fab fa-rocketchat', Message::class);
     }
