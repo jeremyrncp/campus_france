@@ -56,7 +56,13 @@ License: You must have a valid license purchased only from themes.getbootstrap.c
                 <!--end::Logo-->
                 {% block msg_register %}
                 <span class="text-muted font-weight-bold font-size-h4">
-						<a href="/login" id="kt_login_signup" class="text-primary font-weight-bolder">Se connecter</a>
+                    {% if app.user is defined %}
+                        <a class="text-primary font-weight-bolder" href="{{ path('app_logout') }}">
+                            Déconnexion
+                        </a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" id="kt_login_signup" class="text-primary font-weight-bolder">Se connecter</a>
+                    {% endif %}
                 </span>
                 {% endblock %}
             </div>
