@@ -8,7 +8,7 @@
     <!-- CV actuel -->
     <div class="card mb-10">
         <div class="card-body">
-            {% if app.user.cv is defined %}
+            {% if app.user.cv is not null %}
             <p>CV envoyé pour la dernière fois le {{ app.user.dateCV|date('H:i d-m-Y') }} - <a href="uploads/{{ app.user.cv }}" target="_blank">Télécharger votre CV</a></p>
             {% endif %}
         </div>
