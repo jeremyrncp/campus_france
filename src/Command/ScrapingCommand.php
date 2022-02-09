@@ -46,11 +46,6 @@ class ScrapingCommand extends Command
         //        foreach ($this->taskRepository->findBy(['dateexecute' => null]) as $task) {
         foreach ($this->taskRepository->findAll() as $task) {
 
-            /**
-            if ($_SERVER['APP_ENV'] === 'dev') {
-            }
-            **/
-
             shell_exec(__DIR__ . '/../../node_modules/.bin/cypress run --spec "' . $task->getPathScraping().'"');
 
             $task->setDateexecute(new \DateTime());
