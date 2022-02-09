@@ -23,4 +23,12 @@ class ConditionsController extends AbstractController
     {
         return $this->render('conditions/cgu.html.twig');
     }
+
+    /**
+     * @Route("/mentionslegales", name="app_mentions_legales")
+     */
+    public function mentionslegales(): Response
+    {
+        return $this->render('conditions/mentions_legales.html.twig');
+    }
 }
