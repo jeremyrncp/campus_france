@@ -28,7 +28,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
                 'required' => true,
-                'label' => 'Agréer les conditions générales'
+                'label' => 'Accepter les conditions générales'
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
