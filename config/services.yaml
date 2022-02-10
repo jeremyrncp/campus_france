@@ -6,6 +6,7 @@
 parameters:
     emailscontact:
         - contact@gaultierweb.com
+        - willykpedio@gmail.com
 
 services:
     # default configuration for services in *this* file
