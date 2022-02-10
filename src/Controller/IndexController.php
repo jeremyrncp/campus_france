@@ -53,7 +53,7 @@ class IndexController extends AbstractController
     private function sendEmail($emails, $replyTo, $content)
     {
         $email = (new Email())
-            ->from('contact@ŋaultierweb.com')
+            ->addFrom($_SERVER['SENDER_MAIL'])
             ->replyTo($replyTo);
 
         foreach ($emails as $emailList) {
