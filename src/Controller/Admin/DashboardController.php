@@ -7,6 +7,7 @@ use App\Entity\Discussion;
 use App\Entity\InternalMessage;
 use App\Entity\Message;
 use App\Entity\Paiement;
+use App\Entity\Question;
 use App\Entity\Scraping;
 use App\Entity\Task;
 use App\Entity\User;
@@ -44,6 +45,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Messagerie interne', 'far fa-comments', InternalMessage::class);
         yield MenuItem::linkToCrud('Discussions (forum)', 'far fa-comments', Discussion::class);
         yield MenuItem::linkToCrud('Messages (forum)', 'fab fa-rocketchat', Message::class);
+
+        if($this->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::linkToCrud('FAQ', 'fab fa-rocketchat', Question::class);
+        }
     }
 
     /**

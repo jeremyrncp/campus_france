@@ -1,0 +1,12 @@
+{% extends 'base_auth.html.twig' %}
+
+{% block title %}{{question.title}}{% endblock %}
+
+{% block body %}
+    <section class="container-fluid">
+        <h2>{{question.title}}</h2>
+        <div>
+            {{ question.answer|raw }}
+        </div>
+    </section>
+{% endblock %}

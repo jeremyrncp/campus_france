@@ -1,0 +1,19 @@
+{% extends 'base_auth.html.twig' %}
+
+{% block title %}FAQ Campus France{% endblock %}
+
+{% block body %}
+    <section class="container-fluid">
+        {% for question in questions %}
+            <div class="card mb-4">
+                <div class="card-body p-4">
+                    <div class="d-flex">
+                        <a href="{{ path('app_view_question',  {'id': question.id}) }}" class="ms-4">
+                            {{ question.title }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

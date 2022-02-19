@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ContactFormType;
+use App\Repository\QuestionRepository;
 use App\Repository\ScrapingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -32,7 +33,7 @@ class IndexController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(ScrapingRepository $scrapingRepository, Request $request): Response
+    public function index(ScrapingRepository $scrapingRepository, Request $request, QuestionRepository $questionRepository): Response
     {
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
@@ -46,7 +47,8 @@ class IndexController extends AbstractController
         }
 
         return $this->render('index.html.twig', [
-            'form' => $contactForm->createView()
+            'form' => $contactForm->createView(),
+            'questions' => $questionRepository->findAll()
         ]);
     }
 
