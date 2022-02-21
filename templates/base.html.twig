@@ -12,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="website/css/styles.css" rel="stylesheet" />
+    <link href="assets/css/price.css" rel="stylesheet" />
 </head>
 <body>
 <!-- Responsive navbar-->
@@ -31,7 +32,7 @@
     </div>
 </nav>
 <!-- Header-->
-<header class="py-5" style="background-image: url('background.png'); background-position-x: center; background-position-y: 10%; background-repeat: no-repeat; background-size: cover">
+<header class="py-5" style="min-height: 420px; background-image: url('background.jpg'); background-position-x: center; background-position-y: 10%; background-repeat: no-repeat; background-size: cover">
     <div class="container px-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
@@ -60,7 +61,7 @@
             </div>
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3 text-center"><i class="bi bi-pencil-square"></i></div>
-                <h2 class="h4 fw-bolder">Rédaction projet d'étude</h2>
+                <h2 class="h4 fw-bolder">Accompagnement Procédure Campus France</h2>
                 <p>Il est important de bien motiver son projet d'étude et cela consiste à réflechir au métier ou domaine professionnel dans lequel vous exercerez à la fin de vos études. Votre projet professionnel
                 doit être en adéquation avec votre formation. Nous vous offrons un accompagnement personnalisé avec retour d'expérience sur la rédaction de votre projet d'étude</p>
             </div>
@@ -75,13 +76,39 @@
 </section>
 <!-- Pricing section-->
 <section class="bg-light py-5 border-bottom">
+
     <div class="container px-5 my-5">
-        <div class="text-center mb-5">
+        <!--<div class="text-center mb-5">
             <h2 class="fw-bolder">Un seul forfait</h2>
-        </div>
+        </div>-->
         <div class="row gx-5 justify-content-center">
             <!-- Pricing card free-->
             <div class="col-lg-6 col-xl-4">
+                <div class="pricingTable blue">
+                    <div class="pricingTable-header">
+                        <h3 class="title">Un seul forfait</h3>
+                        <div class="pricing-icon">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="price-value">
+                            <span class="amount">€30</span>
+                            <span class="duration">par an</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-content">
+                        <li>Remplissage de votre Espace Campus France</li>
+                        <li>Rédaction de votre Projet d’étude et professionnel</li>
+                        <li>Choix 7 vœux des universités partenaires avec Campus France</li>
+                        <li>Mise en relation avec des universités privés en dehors de Campus France</li>
+                        <li>Coaching entretien Campus France</li>
+                        <li>Modification CV</li>
+                    </ul>
+                    <div class="pricingTable-signup">
+                        <a href="{{ path('app_login') }}">Souscrire</a>
+                    </div>
+                </div>
+                <!--
                 <div class="card mb-5 mb-xl-0">
                     <div class="card-body p-5">
                         <div class="mb-3 text-center">
@@ -115,7 +142,7 @@
                         </ul>
                         <div class="d-grid"><a class="btn btn-outline-primary" href="{{ path('app_login') }}">Souscrire</a></div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
@@ -129,10 +156,10 @@
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
                 {% for question in questions %}
-                    <div class="card mb-4">
+                    <div class="card mb-4" style="background-color: #0D6EFD;">
                         <div class="card-body p-4">
                             <div class="d-flex">
-                                <a href="{{ path('app_view_question',  {'id': question.id}) }}" class="ms-4">
+                                <a href="{{ path('app_view_question',  {'id': question.id}) }}" class="ms-4 text-white">
                                     {{ question.title }}
                                 </a>
                             </div>
@@ -158,8 +185,8 @@
                         <div class="d-flex">
                             <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
                             <div class="ms-4">
-                                <p class="mb-1">Thank you for putting together such a great product. We loved working with you and the whole team, and we will be recommending you to others!</p>
-                                <div class="small text-muted">- Client Name, Location</div>
+                                <p class="mb-1">Merci à toute l'équipe de Etude France grace a vous j'ai pu être accompagné durant toute la procédure campus france, cela a été un soulagement ainsi j'ai pu obtenir mon visa pour venir en france!</p>
+                                <div class="small text-muted">Clarisse, Dakar</div>
                             </div>
                         </div>
                     </div>
@@ -170,8 +197,8 @@
                         <div class="d-flex">
                             <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
                             <div class="ms-4">
-                                <p class="mb-1">The whole team was a huge help with putting things together for our company and brand. We will be hiring them again in the near future for additional work!</p>
-                                <div class="small text-muted">- Client Name, Location</div>
+                                <p class="mb-1">Belle initiatives , j'ai pu être coacher par vos conseillers qui m'ont préparé à mon entretien Campus France. En plus, j'ai reçu un projet d'études adapté à ma formation.</p>
+                                <div class="small text-muted">Diane, Cotonou</div>
                             </div>
                         </div>
                     </div>
@@ -208,6 +235,7 @@
     <div class="container px-5">
         <p class="m-9 text-center"><a href="{{ path('app_mentions_legales') }}" class="text-white">Mentions légales</a> <a href="{{ path('app_cgu') }}" class="text-white">CGU</a>
             <!-- <a href="{{ path('app_cgv') }}" class="text-white ml-10">CGV</a></p>-->
+        <p class="m-0 text-center"><a class="text-white" href="https://www.facebook.com/Etude-France-Pastel-100231355942800" target="_blank"><i class="flaticon-facebook-logo-button text-white"></i></a> - <p class="m-9 text-center"><a href="tel:0753923477" class="text-white">07 53 92 34 77</a> - <a href="mailto:etudefrancepastel@gmail.com" class="text-white">etudefrancepastel@gmail.com</a></p>
         <p class="m-0 text-center text-white">Copyright &copy; Etude France 2022</p>
     </div>
 </footer>

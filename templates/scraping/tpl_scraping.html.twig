@@ -1,5 +1,5 @@
 {% if scraping.getToFieldsNotFilled()|length %}
-    <div class="alert alert-warning">
+    <div class="alert alert-info">
         <p>A remplir : </p>
         <ul>
             {% for field in scraping.getToFieldsNotFilled() %}
@@ -13,12 +13,12 @@
     <h2 class="text-primary">Mes informations personnelles</h2>
     <div class="card mt-5 card">
         <div class="card-header">
-            <h5 class="mt-10">Ma situation personnelle actuelle : <b>{{ scraping.etatInfosPerso }}</b></h5>
+            <h5 class="mt-10">Ma situation personnelle actuelle : <span class="{{ scraping.etatInfosPerso|colorizeStatut }}"><b>{{ scraping.etatInfosPerso }}</b></span></h5>
             <!-- @todo indicate result scraping -->
             <table class="table-hover table mt-15">
                 <tbody>
                 <tr>
-                    <td colspan="6"><h5 class="text-primary">Identifiants et photo : <b>{{ scraping.identifiantEtPhotos }}</b></h5></td>
+                    <td colspan="6"><h5 class="text-primary">Identifiants et photo : <span class="{{ scraping.identifiantEtPhotos|colorizeStatut }}"><b>{{ scraping.identifiantEtPhotos }}</b></span></h5></td>
                 </tr>
                 <tr>
                     <td><b>Email</b> : {{ scraping.monEmail }}</td>
@@ -29,7 +29,7 @@
                     <td colspan="6">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="6"><h5 class="text-primary">Identité : <b>{{ scraping.etatIdentity }}</b></h5></td>
+                    <td colspan="6"><h5 class="text-primary">Identité : <span class="{{ scraping.etatIdentity|colorizeStatut }}"><b>{{ scraping.etatIdentity }}</b></span></h5></td>
                 </tr>
                 {% set data = scraping.etatCivil %}
                 <tr>
@@ -55,7 +55,7 @@
                     <td colspan="6">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="6"><h5 class="text-primary">Coordonnées : <b>{{ scraping.etatCoordoonnees }}</b></h5></td>
+                    <td colspan="6"><h5 class="text-primary">Coordonnées : <span class="{{ scraping.etatCoordoonnees|colorizeStatut }}"><b>{{ scraping.etatCoordoonnees }}</b></span></h5></td>
                 </tr>
                 <tr>{% for label, value in scraping.contactDetails %}
                         {% set data = value|split("#") %}
@@ -66,7 +66,7 @@
                     <td colspan="6">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="6"><h5 class="text-primary">Statut particulier : <b>{{ scraping.statutStatutParticulier }}</b></h5></td>
+                    <td colspan="6"><h5 class="text-primary">Statut particulier : <span class="{{ scraping.statutStatutParticulier|colorizeStatut }}"><b>{{ scraping.statutStatutParticulier }}</b></span></h5></td>
                 </tr>
                 <tr>
                     {% for label, value in scraping.statutParticulier %}
@@ -80,7 +80,7 @@
     </div>
     <div class="card mt-5 card">
         <div class="card-header">
-            <h5 class="mt-10">Parcours et diplômes : <b>{{ scraping.statutParcoursDiplomes }}</b></h5>
+            <h5 class="mt-10">Parcours et diplômes : <span class="{{ scraping.statutParcoursDiplomes|colorizeStatut }}"><b>{{ scraping.statutParcoursDiplomes }}</b></span></h5>
 
             <div class="text-right">CV : <b>{{ scraping.statutCV }}</b></div>
             <table class="table-hover table mt-15">
@@ -109,7 +109,7 @@
     </div>
     <div class="mt-5 card">
         <div class="card-header">
-            <h5 class="mt-10">Compétences linguistiques : <b>{{ scraping.statutLangues }}</b></h5>
+            <h5 class="mt-10">Compétences linguistiques : <span class="{{ scraping.statutLangues|colorizeStatut }}"><b>{{ scraping.statutLangues }}</b></span></h5>
             <!-- @todo indicate result scraping -->
             <table class="table-hover table mt-15">
                 <tbody>
@@ -164,7 +164,7 @@
         <div class="card-header">
             <h3 class="text-primary">Mon panier formations</h3>
 
-            <h5 class="mt-10">Statut panier formation : <b>{{ scraping.statutPanierFormation }}</b></h5>
+            <h5 class="mt-10">Statut panier formation : <span class="{{ scraping.statutPanierFormation|colorizeStatut }}">{{ scraping.statutPanierFormation }}</span></h5>
 
             <!-- @todo indicate result scraping -->
             <table class="table-hover table ">
@@ -201,7 +201,7 @@
                 <tbody>
                 {% for label, value in scraping.statutDossier %}
                 <tr>
-                    <td><b>{{ value.name }}</b> : {{ value.statut }}</td>
+                    <td><b>{{ value.name }}</b> : <span class="{{ value.statut|colorizeStatut }}">{{ value.statut }}</span></td>
                     {% endfor %}
                 </tr>
                 </tbody>
