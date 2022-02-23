@@ -13,6 +13,10 @@
     <h2 class="text-primary">Mes informations personnelles</h2>
     <div class="card mt-5 card">
         <div class="card-header">
+            {% if scraping.etatInfosPerso|colorizeStatut == 'text-warning' and app.user.planpremium is not same as(true) %}
+                <p class="text-right"><a class="btn btn-primary" href="{{ path('student_paiement') }}">Souscrire premium</a></p>
+            {% endif %}
+
             <h5 class="mt-10">Ma situation personnelle actuelle : <span class="{{ scraping.etatInfosPerso|colorizeStatut }}"><b>{{ scraping.etatInfosPerso }}</b></span></h5>
             <!-- @todo indicate result scraping -->
             <table class="table-hover table mt-15">
@@ -80,6 +84,9 @@
     </div>
     <div class="card mt-5 card">
         <div class="card-header">
+            {% if scraping.statutParcoursDiplomes|colorizeStatut == 'text-warning' and app.user.planpremium is not same as(true) %}
+                <p class="text-right"><a class="btn btn-primary" href="{{ path('student_paiement') }}">Souscrire premium</a></p>
+            {% endif %}
             <h5 class="mt-10">Parcours et diplômes : <span class="{{ scraping.statutParcoursDiplomes|colorizeStatut }}"><b>{{ scraping.statutParcoursDiplomes }}</b></span></h5>
 
             <div class="text-right">CV : <b>{{ scraping.statutCV }}</b></div>
@@ -109,6 +116,9 @@
     </div>
     <div class="mt-5 card">
         <div class="card-header">
+            {% if scraping.statutLangues|colorizeStatut == 'text-warning' and app.user.planpremium is not same as(true) %}
+                <p class="text-right"><a class="btn btn-primary" href="{{ path('student_paiement') }}">Souscrire premium</a></p>
+            {% endif %}
             <h5 class="mt-10">Compétences linguistiques : <span class="{{ scraping.statutLangues|colorizeStatut }}"><b>{{ scraping.statutLangues }}</b></span></h5>
             <!-- @todo indicate result scraping -->
             <table class="table-hover table mt-15">
@@ -162,6 +172,9 @@
 <div class="mt-15">
     <div class="card-custon mt-5 card">
         <div class="card-header">
+            {% if scraping.statutPanierFormation|colorizeStatut == 'text-warning' and app.user.planpremium is not same as(true) %}
+                <p class="text-right"><a class="btn btn-primary" href="{{ path('student_paiement') }}">Souscrire premium</a></p>
+            {% endif %}
             <h3 class="text-primary">Mon panier formations</h3>
 
             <h5 class="mt-10">Statut panier formation : <span class="{{ scraping.statutPanierFormation|colorizeStatut }}">{{ scraping.statutPanierFormation }}</span></h5>
@@ -202,8 +215,8 @@
                 {% for label, value in scraping.statutDossier %}
                 <tr>
                     <td><b>{{ value.name }}</b> : <span class="{{ value.statut|colorizeStatut }}">{{ value.statut }}</span></td>
-                    {% endfor %}
                 </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>

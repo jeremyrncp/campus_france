@@ -22,7 +22,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link active text-danger font-weight-bold" aria-current="page" href="/">Accueil</a></li>
 
                 {% if app.user is not null %}
                 <li class="nav-item"><a class="nav-link" href="{{ path('dashboard_student')}}">Tableau de bord</a></li>
@@ -32,13 +32,13 @@
     </div>
 </nav>
 <!-- Header-->
-<header class="py-5" style="min-height: 420px; background-image: url('background.jpg'); background-position-x: center; background-position-y: 10%; background-repeat: no-repeat; background-size: cover">
+<header class="py-5" style="min-height: 500px; background-image: url('background.jpg'); background-position-x: center; background-position-y: 10%; background-repeat: no-repeat; background-size: cover">
     <div class="container px-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
                 <div class="text-center my-5">
                     <h1 class="display-5 fw-bolder text-white mb-2">Etude France</h1>
-                    <p class="lead text-white mb-4">Rédaction et coaching pour votre projet d'études</p>
+                    <p class="lead text-white mb-4">Accompagnement Procédure Campus France </p>
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                         <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{ path('app_login') }}">Se connecter</a>
                         <a class="btn btn-outline-light btn-lg px-4" href="{{ path('app_register') }}">Pas encore inscrit ?</a>
@@ -55,20 +55,20 @@
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3 text-center"><i class="bi bi-keyboard-fill"></i></div>
                 <h2 class="h4 fw-bolder">Remplissage Espace Campus France</h2>
-                <p>Vous avez le projet de poursuivre vos études en France ? notre équipe vous accompagne dans la création et mise à jour de votre espace Campus France.
+                <p class="text-justify">Vous avez le projet de poursuivre vos études en France ? notre équipe vous accompagne dans la création et mise à jour de votre espace Campus France.
                 Le remplissage de voptre espace Campus France est une étape indispensanble à votre mobilité. Nos conseillers sont disponibles 7j7 et 24h24 pour vous accompagner à chaque
                 étape du processus jusqu'à la soumission de votre projet.</p>
             </div>
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3 text-center"><i class="bi bi-pencil-square"></i></div>
                 <h2 class="h4 fw-bolder">Accompagnement Procédure Campus France</h2>
-                <p>Il est important de bien motiver son projet d'étude et cela consiste à réflechir au métier ou domaine professionnel dans lequel vous exercerez à la fin de vos études. Votre projet professionnel
+                <p class="text-justify">Il est important de bien motiver son projet d'étude et cela consiste à réflechir au métier ou domaine professionnel dans lequel vous exercerez à la fin de vos études. Votre projet professionnel
                 doit être en adéquation avec votre formation. Nous vous offrons un accompagnement personnalisé avec retour d'expérience sur la rédaction de votre projet d'étude</p>
             </div>
             <div class="col-lg-4">
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3 text-center"><i class="bi bi-people-fill"></i></div>
                 <h2 class="h4 fw-bolder">Coaching</h2>
-                <p>Comment vous présenter et préasenter son projet d'étude lors de l'entretien ? Quoi répondre à la question "Pourquoi vous choisir vous et pas un autre candidat ?"
+                <p class="text-justify">Comment vous présenter et préasenter son projet d'étude lors de l'entretien ? Quoi répondre à la question "Pourquoi vous choisir vous et pas un autre candidat ?"
                 "Comment expliquez-vous les mauvaises notes de votre bulletin ?" Grâce à nos séances de coaching en live nos conseillers vous donneront les clés de la réussite de votre entretien Campus France</p>
             </div>
         </div>
@@ -83,7 +83,7 @@
         </div>-->
         <div class="row gx-5 justify-content-center">
             <!-- Pricing card free-->
-            <div class="col-lg-6 col-xl-4">
+            <div class="col-lg-6 col-xl-5">
                 <div class="pricingTable blue">
                     <div class="pricingTable-header">
                         <h3 class="title">Un seul forfait</h3>
@@ -92,7 +92,7 @@
                             <i class="fa fa-star"></i>
                         </div>
                         <div class="price-value">
-                            <span class="amount">€30</span>
+                            <span class="amount">30 €</span>
                             <span class="duration">par an</span>
                         </div>
                     </div>
