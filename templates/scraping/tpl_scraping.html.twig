@@ -19,7 +19,7 @@
 
             <h5 class="mt-10">Ma situation personnelle actuelle : <span class="{{ scraping.etatInfosPerso|colorizeStatut }}"><b>{{ scraping.etatInfosPerso }}</b></span></h5>
             <!-- @todo indicate result scraping -->
-            <table class="table-hover table mt-15">
+            <table class="table-hover table table-responsive mt-15">
                 <tbody>
                 <tr>
                     <td colspan="6"><h5 class="text-primary">Identifiants et photo : <span class="{{ scraping.identifiantEtPhotos|colorizeStatut }}"><b>{{ scraping.identifiantEtPhotos }}</b></span></h5></td>
@@ -90,7 +90,7 @@
             <h5 class="mt-10">Parcours et diplômes : <span class="{{ scraping.statutParcoursDiplomes|colorizeStatut }}"><b>{{ scraping.statutParcoursDiplomes }}</b></span></h5>
 
             <div class="text-right">CV : <b>{{ scraping.statutCV }}</b></div>
-            <table class="table-hover table mt-15">
+            <table class="table-hover table table-responsive mt-15">
                 <thead>
                     <tr>
                         <th>Annee</th>
@@ -121,7 +121,7 @@
             {% endif %}
             <h5 class="mt-10">Compétences linguistiques : <span class="{{ scraping.statutLangues|colorizeStatut }}"><b>{{ scraping.statutLangues }}</b></span></h5>
             <!-- @todo indicate result scraping -->
-            <table class="table-hover table mt-15">
+            <table class="table-hover table table-responsive mt-15">
                 <tbody>
                 <tr>
                     <td colspan="2"><h5 class="text-primary">Mes tests et examens en français</h5></td>
@@ -180,7 +180,7 @@
             <h5 class="mt-10">Statut panier formation : <span class="{{ scraping.statutPanierFormation|colorizeStatut }}">{{ scraping.statutPanierFormation }}</span></h5>
 
             <!-- @todo indicate result scraping -->
-            <table class="table-hover table ">
+            <table class="table-hover table table-responsive">
                 <thead>
                     <th>Année</th>
                     <th>Formation</th>
@@ -210,7 +210,7 @@
         <div class="card-header">
             <h2 class="text-primary">Soumission dossier formation</h2>
             <!-- @todo indicate result scraping -->
-            <table class="table-hover table ">
+            <table class="table-hover table table-responsive">
                 <tbody>
                 {% for label, value in scraping.statutDossier %}
                 <tr>
