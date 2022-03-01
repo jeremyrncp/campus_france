@@ -17,9 +17,9 @@ Installation
 
 Execute command in application directory
 
-$ npm install
-$ composer install
-$ bin/console  doctrine:schema:create
+    $ npm install
+    $ composer install
+    $ bin/console  doctrine:schema:create
 
 For update admin password, use command below and choose option 2, type your password and copy password hash value. Replace password hash in line 21 in config/packages/security.yaml
 
