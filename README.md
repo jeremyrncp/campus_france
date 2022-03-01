@@ -3,6 +3,7 @@ Requirements
 
     PHP 7.2.5 or higher;
     PDO-MySQL and LDAP PHP extensions enabled;
+    NPM and Cypress requirements,
     and the usual Symfony application requirements.
 
 Installation
